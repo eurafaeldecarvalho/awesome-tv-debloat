@@ -1,0 +1,10 @@
+# Link check for the generated README and CONTRIBUTING.
+# 429 is a rate limit, not a broken citation.
+verbose = "warn"
+no_progress = true
+max_concurrency = 4
+timeout = 20
+max_retries = 3
+retry_wait_time = 2
+accept = ["200", "204", "206", "429"]
+exclude_path = ["LICENSE"]

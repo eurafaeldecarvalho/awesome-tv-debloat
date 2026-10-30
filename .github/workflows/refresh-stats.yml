@@ -1,0 +1,47 @@
+name: Refresh GitHub stats
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: refresh-github-stats
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Update stars and last commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -r requirements.txt
+      - name: Refresh stats and regenerate the README
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/refresh_stats.py
+          python scripts/build_readme.py
+      - name: Open a pull request when stats changed
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          commit-message: "Refresh stars and last-commit dates from the GitHub API"
+          title: "Refresh stars and last-commit dates"
+          body: |
+            Weekly update of `stars` and `last_commit` in `data/entries.yml`,
+            and the README regenerated from that file. Editorial fields are left unchanged.
+          branch: chore/refresh-github-stats
+          add-paths: |
+            data/entries.yml
+            README.md
+          delete-branch: true
