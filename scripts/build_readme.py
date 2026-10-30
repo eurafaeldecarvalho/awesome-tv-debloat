@@ -19,12 +19,16 @@ DATA = ROOT / "data" / "entries.yml"
 README = ROOT / "README.md"
 
 FORBIDDEN = re.compile(r"\btested\b", re.IGNORECASE)
+# The tagline says "Not tested." A project may also say it is "untested".
+# Any other use of the word is a claim that a television was tried.
+DISCLAIMER = re.compile(r"\b(?:not tested|untested)\b", re.IGNORECASE)
 
 ROOT_RANK = {"no": 0, "depends": 1, "unknown": 2, "yes": 3}
 UNDO_RANK = {"yes": 0, "partial": 1, "unknown": 2, "no": 3}
 PC_RANK = {"no": 0, "depends": 1, "unknown": 2, "yes": 3}
 
 KIND_ORDER = [
+    "on-device-settings",
     "dns-block",
     "clean-launcher",
     "ad-free-client",
@@ -33,6 +37,7 @@ KIND_ORDER = [
     "firmware-root",
 ]
 KIND_LABEL = {
+    "on-device-settings": "On-device settings",
     "dns-block": "DNS blocking",
     "clean-launcher": "Clean launcher",
     "ad-free-client": "Ad-free client",
@@ -62,6 +67,10 @@ def fail(message: str) -> None:
     sys.exit(1)
 
 
+def has_forbidden(text: str) -> bool:
+    return bool(FORBIDDEN.search(DISCLAIMER.sub(" ", text)))
+
+
 def load() -> dict:
     if not DATA.is_file():
         fail(f"missing {DATA}")
@@ -79,7 +88,7 @@ def require_url(entry_id: str, key: str, url: object) -> str:
 
 def validate(data: dict) -> None:
     raw = DATA.read_text(encoding="utf-8")
-    if FORBIDDEN.search(raw):
+    if has_forbidden(raw):
         fail("data/entries.yml contains the forbidden word")
 
     platforms = data.get("platforms")
@@ -141,8 +150,13 @@ def validate(data: dict) -> None:
             fail(f"{eid}: sources must be a mapping")
         for key in SOURCE_KEYS:
             require_url(eid, key, sources.get(key))
-        if FORBIDDEN.search(entry["undo"]) or FORBIDDEN.search(entry["note"]):
+        if has_forbidden(entry["undo"]) or has_forbidden(entry["note"]):
             fail(f"{eid}: note or undo contains the forbidden word")
+        badge = entry.get("badge")
+        if badge is not None and (not isinstance(badge, str) or not badge.strip()):
+            fail(f"{eid}: badge must be a non-empty string when set")
+        if isinstance(badge, str) and has_forbidden(badge):
+            fail(f"{eid}: badge contains the forbidden word")
 
     known_platforms = []
     for platform in platforms:
@@ -159,8 +173,15 @@ def validate(data: dict) -> None:
             fail(f"{pid}: start_here {starter} is not an entry")
         if pid not in by_id[starter]["platforms"]:
             fail(f"{pid}: start_here {starter} does not list this platform")
-        if FORBIDDEN.search(platform["start_here_text"]):
+        if has_forbidden(platform["start_here_text"]):
             fail(f"{pid}: start here text contains the forbidden word")
+        caveat = platform.get("caveat")
+        if caveat is not None:
+            if not isinstance(caveat, str) or not caveat.strip():
+                fail(f"{pid}: caveat must be a non-empty string when set")
+            require_url(pid, "caveat_source", platform.get("caveat_source"))
+            if has_forbidden(caveat):
+                fail(f"{pid}: caveat contains the forbidden word")
 
     for entry in entries:
         for pid in entry["platforms"]:
@@ -174,13 +195,13 @@ def validate(data: dict) -> None:
             if not isinstance(item.get(key), str) or not item[key].strip():
                 fail(f"left_out missing {key}")
         require_url(item["name"], "url", item.get("url"))
-        if FORBIDDEN.search(item["why"]):
+        if has_forbidden(item["why"]):
             fail(f"left_out {item['name']} contains the forbidden word")
 
-    for key in ("safety", "how_to_read"):
+    for key in ("safety", "how_to_read", "tagline", "ai_disclosure"):
         if not isinstance(data.get(key), str) or not data[key].strip():
             fail(f"{key} is required")
-        if FORBIDDEN.search(data[key]):
+        if has_forbidden(data[key]):
             fail(f"{key} contains the forbidden word")
 
 
@@ -251,6 +272,8 @@ def render_table(rows: list[dict]) -> str:
         if entry.get("archived"):
             name += " (archived)"
         tool = f"[{name}]({project_url(entry)})<br>{author_cell(entry)}"
+        if entry.get("badge"):
+            tool += f"<br>{md(entry['badge'])}"
         cells = [
             tool,
             kind_cell(entry),
@@ -272,7 +295,9 @@ def render(data: dict) -> str:
         "",
         "# awesome-tv-debloat",
         "",
-        "Every way to strip ads off a smart TV, listed by brand.",
+        data["tagline"].strip(),
+        "",
+        data["ai_disclosure"].strip(),
         "",
         "## Safety",
         "",
@@ -298,6 +323,12 @@ def render(data: dict) -> str:
             f"{link(platform['start_here_source'])}"
         )
         lines.append("")
+        if platform.get("caveat"):
+            lines.append(
+                f"**Caveat.** {md(platform['caveat'])} "
+                f"{link(platform['caveat_source'])}"
+            )
+            lines.append("")
         lines.append(
             f"{len(ordered)} entries. The first row is the start-here pick. "
             "The rows after it run from the smaller change to the larger one: "
@@ -321,7 +352,7 @@ def render(data: dict) -> str:
         "This repository does not copy its wording or its layout."
     )
     lines.append("")
-    lines.append("## Left out of v1")
+    lines.append("## Left out")
     lines.append("")
     lines.append(
         "These came up while gathering the tables. They are omitted because a "
@@ -339,7 +370,7 @@ def render(data: dict) -> str:
     )
     lines.append("")
     text = "\n".join(lines)
-    if FORBIDDEN.search(text):
+    if has_forbidden(text):
         fail("generated README contains the forbidden word")
     return text
 

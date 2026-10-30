@@ -52,6 +52,7 @@ Quote `yes` and `no`. Unquoted, YAML reads them as booleans.
 
 `kinds` must be one or more of:
 
+- `on-device-settings` — remote settings the project documents on the television
 - `dns-block` — DNS blocking
 - `clean-launcher` — a home screen without the stock ad rows
 - `ad-free-client` — an app that replaces an ad-supported client

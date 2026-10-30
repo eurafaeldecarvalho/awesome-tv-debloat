@@ -11,14 +11,18 @@ safety: >
   project's README or code. The link on the cell is that page. Where the project
   is silent, the cell says unknown.
 
+tagline: "Smart TV ad-stripping projects by brand: root, undo, computer needed, each cell sourced. Not tested."
+ai_disclosure: "Assembled by an AI coding agent from each project's own README/code; curated via pull requests."
+
 how_to_read: >
   Root is yes, no, or depends. Undo is yes, partial, or no, followed by the way
   back the project describes. PC is whether a computer is required. unknown means
   that project's README or code does not say. Stars and the last commit date come
   from the GitHub API. A project that is not hosted on GitHub has unknown in those
   two cells. The license is an SPDX identifier taken from the project's license
-  file, or unknown when no license is stated. Kind is one or more of DNS blocking,
-  clean launcher, ad-free client, ADB debloat, homebrew, and firmware / root.
+  file, or unknown when no license is stated. Kind is one or more of on-device
+  settings, DNS blocking, clean launcher, ad-free client, ADB debloat, homebrew,
+  and firmware / root.
 
 platforms:
   - id: android-tv
@@ -31,12 +35,15 @@ platforms:
     start_here_source: https://github.com/man15h/tellyscope/blob/main/README.md
   - id: fire-tv
     title: Fire TV
-    start_here: hearth
+    start_here: dumbtv
     start_here_text: >
-      The README says Amazon's launcher stays installed and enabled, pressing
-      Home twice still opens it, and SKIP_DEBLOAT=1 installs the home screen
-      without the package cleanup. uninstall.sh removes that install.
-    start_here_source: https://github.com/Srikarmk/hearth/blob/main/README.md
+      dumbtv's README says the cleanup needs no root, and scripts/restore.sh
+      re-enables every package, puts the settings snapshot back, removes the
+      DNS filter, and gives Home back to Amazon. That itemized undo is why
+      this row is first. Hearth also has uninstall.sh, and SKIP_DEBLOAT=1
+      installs only the home screen, but that README does not list what the
+      command restores. The pick follows the documented undo, not the star count.
+    start_here_source: https://github.com/humblemuzzu/dumbtv/blob/main/README.md
   - id: webos
     title: LG webOS
     start_here: free-my-tv
@@ -59,17 +66,33 @@ platforms:
     start_here_text: >
       The README says Aerial needs no root, does not modify system apps, and a
       restore command returns the previous desktop. A USB-stick install is also
-      described, so a computer is not the only path. Hisense VIDAA is not this
-      table. CleanYourTV's README says VIDAA has no ADB path.
+      described, so a computer is not the only path. Hisense sets that run VIDAA
+      are in the Hisense VIDAA section. CleanYourTV's README says VIDAA has no
+      ADB, which is why the Android tools on this table do not cover those sets.
     start_here_source: https://github.com/pengchujin/aerial-tv/blob/main/README.md
+  - id: vidaa
+    title: Hisense VIDAA
+    start_here: vidaa-clean-tv
+    start_here_text: >
+      The README says there is no root, nothing is installed on the TV, and
+      everything can be undone. The remote-only settings path needs no computer.
+      DNS filtering is optional and runs on the network. CleanYourTV's showcase
+      lists this project, which this README also states. The same README says
+      no model has a completed hardware-verification session, so the row is
+      untested on hardware.
+    start_here_source: https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md
   - id: roku
     title: Roku
     start_here: roku-ads
     start_here_text: >
-      This hosts file is the only Roku-specific public list in v1. The README
-      says banner containers may still show up empty. It does not say whether
-      root is involved, how to remove the list, or whether a computer is required.
+      This is only a hosts file. The last commit on the default branch is
+      2023-09-10. Root, undo, and whether a computer is required are unknown.
+      The README says banner containers may still show up empty.
     start_here_source: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
+    caveat: >
+      2023 hosts list. Root, undo, and PC are unknown. The kind, the star count,
+      the commit date, and the license are the cells the repository does state.
+    caveat_source: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
   - id: network
     title: Network DNS for any brand
     start_here: adguard-home
@@ -79,6 +102,10 @@ platforms:
       root, and documents an uninstall flag. The same README says DNS blocking
       cannot remove YouTube or Twitch ads.
     start_here_source: https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md
+    caveat: >
+      AdGuard Home's own README says a DNS-level blocker cannot remove YouTube
+      or Twitch ads. That limit is noted on both rows in this section.
+    caveat_source: https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md
 
 entries:
   - id: tellyscope
@@ -826,7 +853,7 @@ entries:
     last_commit: "2026-10-17"
     license: EUPL-1.2
     archived: false
-    note: "DNS sinkhole the README describes as network-wide ad blocking, including smart TVs, with no client software on the television. It runs on the owner's Linux hardware. The Roku list below is meant to be added to it. GitHub's license field is NOASSERTION. The license file states EUPL-1.2."
+    note: "DNS sinkhole the README describes as network-wide ad blocking, including smart TVs, with no client software on the television. It runs on the owner's Linux hardware. The Roku list is a separate hosts file meant to be added to it. AdGuard Home's README says this kind of DNS blocking cannot remove YouTube or Twitch ads. GitHub's license field is NOASSERTION. The license file states EUPL-1.2."
     sources:
       kinds: https://github.com/pi-hole/pi-hole/blob/master/README.md
       root: https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh
@@ -880,7 +907,8 @@ entries:
     last_commit: "2023-09-10"
     license: GPL-3.0
     archived: false
-    note: "A hosts file of Roku ad domains for Pi-hole. The README says banner ad containers may still appear, empty. The raw URL printed in that README points at a different owner name. The file in this repository is hosts."
+    badge: "2023 hosts list. Root, undo, and PC are unknown."
+    note: "Only a hosts file of Roku ad domains for Pi-hole, last committed in 2023. Root, how to remove the list, and whether a computer is required are unknown. The README says banner ad containers may still appear, empty. The raw URL printed in that README points at a different owner name. The file in this repository is hosts."
     sources:
       kinds: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
       root: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
@@ -1027,6 +1055,33 @@ entries:
       last_commit: https://github.com/jtlemkin/DumbTV/commits/main
       license: https://github.com/jtlemkin/DumbTV/blob/main/README.md
 
+  - id: vidaa-clean-tv
+    name: VIDAA Clean TV
+    author: HALCONDEORO
+    repo: HALCONDEORO/vidaa-clean-tv
+    branch: main
+    platforms: [vidaa]
+    kinds: [on-device-settings, dns-block]
+    root: "no"
+    reversible: "yes"
+    undo: "The README says nothing is installed on the TV and everything can be undone. Settings are changed with the remote after noting the original values. The DNS filter runs on the network, so removing it leaves the set unmodified."
+    pc_needed: depends
+    stars: 4
+    last_commit: "2026-10-29"
+    license: MIT
+    archived: false
+    note: "For Hisense VIDAA and other VIDAA sets, not Hisense Android TV. CleanYourTV's showcase lists this project. The README says there is no root, no firmware change, and no ADB. It also says no model has a completed hardware-verification session, so this row is untested on hardware. Ads can still appear after the personalization setting is changed."
+    sources:
+      kinds: https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md
+      root: https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md
+      reversible: https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md
+      undo: https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md
+      pc_needed: https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md
+      platforms: https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md
+      stars: https://api.github.com/repos/HALCONDEORO/vidaa-clean-tv
+      last_commit: https://github.com/HALCONDEORO/vidaa-clean-tv/commits/main
+      license: https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/LICENSE
+
 left_out:
   - name: NextDNS CLI
     url: https://github.com/nextdns/nextdns
@@ -1055,9 +1110,9 @@ left_out:
   - name: Awesome Android TV FOSS Apps
     url: https://github.com/Generator/Awesome-Android-TV-FOSS-Apps
     why: Linked under Related lists. Its text and layout are not reused, and it is a general app list rather than a brand-by-brand ad-strip table.
-  - name: Hisense VIDAA, Vizio, and Roku beyond DNS
+  - name: Vizio
     url: https://github.com/Gathin23/cleanyourtv/blob/main/README.md
-    why: CleanYourTV's README says VIDAA, Vizio and Roku have no ADB path. No other public README in this pass stated a reversible on-device tool for VIDAA or Vizio. Roku is only the hosts list above.
+    why: CleanYourTV's README says Vizio has no ADB path. No public README in this pass stated an on-device tool for Vizio. Hisense VIDAA is the VIDAA Clean TV row. Roku is the 2023 hosts list above.
   - name: Country forks and skins
     url: https://github.com/Gathin23/cleanyourtv
     why: Forks and skins of CleanYourTV, Aerial, Free My TV and TV Detox repeat the upstream claims. Quiet TV and 简居 TV stay because their READMEs add their own scope.
