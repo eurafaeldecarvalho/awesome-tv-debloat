@@ -1,0 +1,1063 @@
+# Single source for the README. Edit this file, then run scripts/build_readme.py.
+# Facts come from each project's own README or code. Use unknown when they are silent.
+# Do not write the word that means a television was tried by us.
+
+safety: >
+  ADB and similar debug tools can leave a television without a home screen,
+  without inputs, or without updates. Prefer the Start here row for that brand.
+  Write down package names before disabling anything, and keep the project's own
+  way back. This list is not a set of instructions, and it does not claim that
+  these projects were run on a television here. Every cell comes from that
+  project's README or code. The link on the cell is that page. Where the project
+  is silent, the cell says unknown.
+
+how_to_read: >
+  Root is yes, no, or depends. Undo is yes, partial, or no, followed by the way
+  back the project describes. PC is whether a computer is required. unknown means
+  that project's README or code does not say. Stars and the last commit date come
+  from the GitHub API. A project that is not hosted on GitHub has unknown in those
+  two cells. The license is an SPDX identifier taken from the project's license
+  file, or unknown when no license is stated. Kind is one or more of DNS blocking,
+  clean launcher, ad-free client, ADB debloat, homebrew, and firmware / root.
+
+platforms:
+  - id: android-tv
+    title: Google TV and Android TV
+    start_here: tellyscope
+    start_here_text: >
+      The README says the phone app needs no root and no computer, disables
+      built-in apps instead of uninstalling them, keeps a protected list, and
+      can turn back on only what it turned off.
+    start_here_source: https://github.com/man15h/tellyscope/blob/main/README.md
+  - id: fire-tv
+    title: Fire TV
+    start_here: hearth
+    start_here_text: >
+      The README says Amazon's launcher stays installed and enabled, pressing
+      Home twice still opens it, and SKIP_DEBLOAT=1 installs the home screen
+      without the package cleanup. uninstall.sh removes that install.
+    start_here_source: https://github.com/Srikarmk/hearth/blob/main/README.md
+  - id: webos
+    title: LG webOS
+    start_here: free-my-tv
+    start_here_text: >
+      The README says the LG app installs through LG Developer Mode, nothing is
+      rooted, LG's home screen stays where it is, and webos/install.py
+      --uninstall removes the app.
+    start_here_source: https://github.com/simbasjungles/free-my-tv/blob/main/README.md
+  - id: tizen
+    title: Samsung Tizen
+    start_here: free-my-tv
+    start_here_text: >
+      The README says the Samsung app installs through Samsung Developer Mode,
+      nothing is rooted, Samsung's home screen stays where it is, and
+      tizen/install.py --uninstall removes a copy left behind.
+    start_here_source: https://github.com/simbasjungles/free-my-tv/blob/main/README.md
+  - id: oem-android
+    title: Xiaomi, TCL, Hisense and other Android OEMs
+    start_here: aerial-tv
+    start_here_text: >
+      The README says Aerial needs no root, does not modify system apps, and a
+      restore command returns the previous desktop. A USB-stick install is also
+      described, so a computer is not the only path. Hisense VIDAA is not this
+      table. CleanYourTV's README says VIDAA has no ADB path.
+    start_here_source: https://github.com/pengchujin/aerial-tv/blob/main/README.md
+  - id: roku
+    title: Roku
+    start_here: roku-ads
+    start_here_text: >
+      This hosts file is the only Roku-specific public list in v1. The README
+      says banner containers may still show up empty. It does not say whether
+      root is involved, how to remove the list, or whether a computer is required.
+    start_here_source: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
+  - id: network
+    title: Network DNS for any brand
+    start_here: adguard-home
+    start_here_text: >
+      The README calls it a network-wide ads and trackers DNS server, names
+      smart TVs as a place that kind of blocking helps, says it can run without
+      root, and documents an uninstall flag. The same README says DNS blocking
+      cannot remove YouTube or Twitch ads.
+    start_here_source: https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md
+
+entries:
+  - id: tellyscope
+    name: Tellyscope
+    author: man15h
+    repo: man15h/tellyscope
+    branch: main
+    platforms: [android-tv, fire-tv]
+    kinds: [adb-debloat, clean-launcher, dns-block]
+    root: "no"
+    reversible: "yes"
+    undo: "Built-in apps are disabled with pm disable-user, which Undo or pm enable reverses. Restore everything turns back on only what Tellyscope turned off. Uninstall is offered only for apps the owner installed."
+    pc_needed: "no"
+    stars: 825
+    last_commit: "2026-10-29"
+    license: GPL-3.0
+    archived: false
+    note: "Phone app. The README names Android TV, Google TV, NVIDIA Shield and Fire TV, and says a real-hardware check for Shield and Fire TV is still open. Tweaks include ad-blocking Private DNS, and it can install a launcher."
+    sources:
+      kinds: https://github.com/man15h/tellyscope/blob/main/README.md
+      root: https://github.com/man15h/tellyscope/blob/main/README.md
+      reversible: https://github.com/man15h/tellyscope/blob/main/README.md
+      undo: https://github.com/man15h/tellyscope/blob/main/README.md
+      pc_needed: https://github.com/man15h/tellyscope/blob/main/README.md
+      platforms: https://github.com/man15h/tellyscope/blob/main/README.md
+      stars: https://api.github.com/repos/man15h/tellyscope
+      last_commit: https://github.com/man15h/tellyscope/commits/main
+      license: https://github.com/man15h/tellyscope/blob/main/LICENSE
+
+  - id: cleanyourtv-app
+    name: Clean Your TV app
+    author: udhaykumarbala
+    repo: udhaykumarbala/cleanyourtv-app
+    branch: main
+    platforms: [android-tv, fire-tv, oem-android]
+    kinds: [adb-debloat, clean-launcher]
+    root: unknown
+    reversible: "yes"
+    undo: "Apps are switched off for the main user and can be put back one at a time or from the restore point. Save a copy exports restore scripts that run from any computer with adb."
+    pc_needed: "no"
+    stars: 1135
+    last_commit: "2026-10-30"
+    license: MIT
+    archived: false
+    note: "Android phone app for the CleanYourTV lists. The README says Fire TV, TCL China builds and Android 7 get cleanup only, and that a new home screen is limited to models whose list says the switch holds. It never uses the word root."
+    sources:
+      kinds: https://github.com/udhaykumarbala/cleanyourtv-app/blob/main/README.md
+      root: https://github.com/udhaykumarbala/cleanyourtv-app/blob/main/README.md
+      reversible: https://github.com/udhaykumarbala/cleanyourtv-app/blob/main/README.md
+      undo: https://github.com/udhaykumarbala/cleanyourtv-app/blob/main/README.md
+      pc_needed: https://github.com/udhaykumarbala/cleanyourtv-app/blob/main/README.md
+      platforms: https://github.com/udhaykumarbala/cleanyourtv-app/blob/main/README.md
+      stars: https://api.github.com/repos/udhaykumarbala/cleanyourtv-app
+      last_commit: https://github.com/udhaykumarbala/cleanyourtv-app/commits/main
+      license: https://github.com/udhaykumarbala/cleanyourtv-app/blob/main/LICENSE
+
+  - id: cleanyourtv
+    name: CleanYourTV
+    author: Gathin23
+    repo: Gathin23/cleanyourtv
+    branch: main
+    platforms: [android-tv, fire-tv, oem-android]
+    kinds: [adb-debloat, clean-launcher]
+    root: "no"
+    reversible: "yes"
+    undo: "Packages are disabled with pm disable-user and nothing is uninstalled, so the restore script can undo every step. The README also calls this a one-line restore."
+    pc_needed: "yes"
+    stars: 46068
+    last_commit: "2026-10-30"
+    license: MIT
+    archived: false
+    note: "Computer, or a coding assistant on that computer, for Android TV and Google TV. On Fire TV the README says only the debloat half applies. Samsung Tizen, LG webOS, Roku, Vizio and Hisense VIDAA are named as unsupported. The brand table includes Xiaomi, TCL and Hisense Android sets."
+    sources:
+      kinds: https://github.com/Gathin23/cleanyourtv/blob/main/README.md
+      root: https://github.com/Gathin23/cleanyourtv/blob/main/README.md
+      reversible: https://github.com/Gathin23/cleanyourtv/blob/main/README.md
+      undo: https://github.com/Gathin23/cleanyourtv/blob/main/README.md
+      pc_needed: https://github.com/Gathin23/cleanyourtv/blob/main/README.md
+      platforms: https://github.com/Gathin23/cleanyourtv/blob/main/README.md
+      stars: https://api.github.com/repos/Gathin23/cleanyourtv
+      last_commit: https://github.com/Gathin23/cleanyourtv/commits/main
+      license: https://github.com/Gathin23/cleanyourtv/blob/main/LICENSE
+
+  - id: free-my-tv
+    name: Free My TV
+    author: simbasjungles
+    repo: simbasjungles/free-my-tv
+    branch: main
+    platforms: [android-tv, webos, tizen, oem-android]
+    kinds: [clean-launcher, adb-debloat]
+    root: "no"
+    reversible: "yes"
+    undo: "On Google TV, Home Screen then Original brings the factory home, screensaver and apps back. webos/install.py --uninstall and tizen/install.py --uninstall remove those builds."
+    pc_needed: depends
+    stars: 5425
+    last_commit: "2026-10-30"
+    license: MIT
+    archived: false
+    note: "One home screen for Google TV, LG webOS and Samsung Tizen. The Google TV path also turns off the stock home and some named packages, without uninstalling them. A webOS Homebrew Channel repository can skip the computer. TCL, Hisense and Xiaomi remote-button behavior is described in the same README."
+    sources:
+      kinds: https://github.com/simbasjungles/free-my-tv/blob/main/README.md
+      root: https://github.com/simbasjungles/free-my-tv/blob/main/README.md
+      reversible: https://github.com/simbasjungles/free-my-tv/blob/main/README.md
+      undo: https://github.com/simbasjungles/free-my-tv/blob/main/README.md
+      pc_needed: https://github.com/simbasjungles/free-my-tv/blob/main/README.md
+      platforms: https://github.com/simbasjungles/free-my-tv/blob/main/README.md
+      stars: https://api.github.com/repos/simbasjungles/free-my-tv
+      last_commit: https://github.com/simbasjungles/free-my-tv/commits/main
+      license: https://github.com/simbasjungles/free-my-tv/blob/main/LICENSE
+
+  - id: tv-detox
+    name: TV Detox
+    author: Ansub
+    repo: Ansub/tv-detox
+    branch: main
+    platforms: [android-tv, oem-android]
+    kinds: [adb-debloat, clean-launcher]
+    root: unknown
+    reversible: partial
+    undo: "undo.sh turns the stock home screen back on and removes this one. The README says reversing the package cleanup is a further step, and that one remote-service change is not covered by undo.sh."
+    pc_needed: "yes"
+    stars: 1821
+    last_commit: "2026-10-30"
+    license: MIT
+    archived: false
+    note: "A small home screen plus a prompt for a coding assistant. The README says apps are turned off, never deleted, and that the assistant has to run on a computer on the same network. It does not say whether root is required. Philips and TCL behavior is called out in the same file."
+    sources:
+      kinds: https://github.com/Ansub/tv-detox/blob/main/README.md
+      root: https://github.com/Ansub/tv-detox/blob/main/README.md
+      reversible: https://github.com/Ansub/tv-detox/blob/main/README.md
+      undo: https://github.com/Ansub/tv-detox/blob/main/README.md
+      pc_needed: https://github.com/Ansub/tv-detox/blob/main/README.md
+      platforms: https://github.com/Ansub/tv-detox/blob/main/README.md
+      stars: https://api.github.com/repos/Ansub/tv-detox
+      last_commit: https://github.com/Ansub/tv-detox/commits/main
+      license: https://github.com/Ansub/tv-detox/blob/main/LICENSE
+
+  - id: aerial-tv
+    name: Aerial
+    author: pengchujin
+    repo: pengchujin/aerial-tv
+    branch: main
+    platforms: [android-tv, oem-android]
+    kinds: [clean-launcher]
+    root: "no"
+    reversible: "yes"
+    undo: "The install section says the desktop can be restored at any time. The restore section documents a restore command, and --uninstall removes Aerial."
+    pc_needed: depends
+    stars: 7945
+    last_commit: "2026-10-30"
+    license: MIT
+    archived: false
+    note: "tvOS-style Android TV launcher aimed at Xiaomi, TCL, Skyworth, Sony and other sets, including a Hisense model in the device table. System apps are not modified. Install paths include a computer, and a USB stick without one."
+    sources:
+      kinds: https://github.com/pengchujin/aerial-tv/blob/main/README.md
+      root: https://github.com/pengchujin/aerial-tv/blob/main/README.md
+      reversible: https://github.com/pengchujin/aerial-tv/blob/main/README.md
+      undo: https://github.com/pengchujin/aerial-tv/blob/main/README.md
+      pc_needed: https://github.com/pengchujin/aerial-tv/blob/main/README.md
+      platforms: https://github.com/pengchujin/aerial-tv/blob/main/README.md
+      stars: https://api.github.com/repos/pengchujin/aerial-tv
+      last_commit: https://github.com/pengchujin/aerial-tv/commits/main
+      license: https://github.com/pengchujin/aerial-tv/blob/main/LICENSE
+
+  - id: tigris
+    name: Tigris
+    author: lesnolie
+    repo: lesnolie/Tigris
+    branch: main
+    platforms: [android-tv, oem-android, webos]
+    kinds: [clean-launcher]
+    root: "no"
+    reversible: "yes"
+    undo: "The FAQ says root is not required and system partitions are not modified. The restore section documents a restore command and a manual sequence. On webOS the documented restore only removes the Tigris package and says the factory Home was not changed."
+    pc_needed: depends
+    stars: 534
+    last_commit: "2026-10-29"
+    license: MIT
+    archived: false
+    note: "Android TV launcher that names Xiaomi, TCL, Hisense and Skyworth, and says it does not root, does not change system partitions, and does not uninstall the factory desktop. A USB install can open the basic desktop. The webOS tree is described as a development preview, and Home-button takeover is not a finished release."
+    sources:
+      kinds: https://github.com/lesnolie/Tigris/blob/main/README.md
+      root: https://github.com/lesnolie/Tigris/blob/main/README.md
+      reversible: https://github.com/lesnolie/Tigris/blob/main/README.md
+      undo: https://github.com/lesnolie/Tigris/blob/main/README.md
+      pc_needed: https://github.com/lesnolie/Tigris/blob/main/README.md
+      platforms: https://github.com/lesnolie/Tigris/blob/main/README.md
+      stars: https://api.github.com/repos/lesnolie/Tigris
+      last_commit: https://github.com/lesnolie/Tigris/commits/main
+      license: https://github.com/lesnolie/Tigris/blob/main/LICENSE
+
+  - id: tv-home
+    name: TV Home
+    author: linuxliam
+    repo: linuxliam/tv-home
+    branch: main
+    platforms: [android-tv, oem-android]
+    kinds: [clean-launcher, adb-debloat]
+    root: unknown
+    reversible: "yes"
+    undo: "The README shows pm enable for the Google TV launcher and the setup wizard, plus set-home-activity back to Google's home. It says nothing is uninstalled and pm enable undoes packages listed in DISABLED_PACKAGES.txt."
+    pc_needed: "yes"
+    stars: 0
+    last_commit: "2026-10-23"
+    license: unknown
+    archived: false
+    note: "XMB-style home installed with adb. The README does not say whether root is required, and it does not name a license. A Hisense section hides com.vt.* apps from the list, and DISABLED_PACKAGES.txt is described as including two Hisense analytics services on the author's set."
+    sources:
+      kinds: https://github.com/linuxliam/tv-home/blob/main/README.md
+      root: https://github.com/linuxliam/tv-home/blob/main/README.md
+      reversible: https://github.com/linuxliam/tv-home/blob/main/README.md
+      undo: https://github.com/linuxliam/tv-home/blob/main/README.md
+      pc_needed: https://github.com/linuxliam/tv-home/blob/main/README.md
+      platforms: https://github.com/linuxliam/tv-home/blob/main/README.md
+      stars: https://api.github.com/repos/linuxliam/tv-home
+      last_commit: https://github.com/linuxliam/tv-home/commits/main
+      license: https://github.com/linuxliam/tv-home/blob/main/README.md
+
+  - id: projectivy
+    name: Projectivy Launcher
+    author: spocky
+    repo: spocky/miproja1
+    branch: master
+    platforms: [android-tv, oem-android]
+    kinds: [clean-launcher, firmware-root]
+    root: depends
+    reversible: unknown
+    undo: "The README lists easy backups of settings. It does not describe putting the stock launcher back."
+    pc_needed: "no"
+    stars: 2235
+    last_commit: "2026-02-19"
+    license: unknown
+    archived: false
+    note: "Ad-free Android TV launcher, installed from Google Play or the GitHub releases. The same README says rooting, custom recovery, disabling stock apps and replacing the launcher remain available in version 4.x, and that the files cover a few Xiaomi-ecosystem devices. No license file was found."
+    sources:
+      kinds: https://github.com/spocky/miproja1/blob/master/README.md
+      root: https://github.com/spocky/miproja1/blob/master/README.md
+      reversible: https://github.com/spocky/miproja1/blob/master/README.md
+      undo: https://github.com/spocky/miproja1/blob/master/README.md
+      pc_needed: https://github.com/spocky/miproja1/blob/master/README.md
+      platforms: https://github.com/spocky/miproja1/blob/master/README.md
+      stars: https://api.github.com/repos/spocky/miproja1
+      last_commit: https://github.com/spocky/miproja1/commits/master
+      license: https://github.com/spocky/miproja1
+
+  - id: ltv-launcher
+    name: LTvLauncher
+    author: LeanBitLab
+    repo: leanbitlab-org/LtvLauncher
+    branch: master
+    platforms: [android-tv, fire-tv]
+    kinds: [clean-launcher]
+    root: unknown
+    reversible: partial
+    undo: "Method 4 documents pm enable for the Google TV launcher and the setup wizard. Methods 1 to 3 are a default-home setting, an accessibility toggle, or a key remap, and the README does not write a separate undo for those."
+    pc_needed: "no"
+    stars: 430
+    last_commit: "2026-10-30"
+    license: GPL-3.0
+    archived: false
+    note: "Fork of FLauncher. The README calls it ad-free and names Android TV, Google TV and Fire TV. The Downloader app path does not use a computer. The README does not say whether root is required."
+    sources:
+      kinds: https://github.com/leanbitlab-org/LtvLauncher/blob/master/README.md
+      root: https://github.com/leanbitlab-org/LtvLauncher/blob/master/README.md
+      reversible: https://github.com/leanbitlab-org/LtvLauncher/blob/master/README.md
+      undo: https://github.com/leanbitlab-org/LtvLauncher/blob/master/README.md
+      pc_needed: https://github.com/leanbitlab-org/LtvLauncher/blob/master/README.md
+      platforms: https://github.com/leanbitlab-org/LtvLauncher/blob/master/README.md
+      stars: https://api.github.com/repos/leanbitlab-org/LtvLauncher
+      last_commit: https://github.com/leanbitlab-org/LtvLauncher/commits/master
+      license: https://github.com/leanbitlab-org/LtvLauncher/blob/master/LICENSE
+
+  - id: flauncher
+    name: FLauncher
+    author: etienn01
+    repo: null
+    branch: null
+    url: https://gitlab.com/flauncher/flauncher
+    platforms: [android-tv]
+    kinds: [clean-launcher]
+    root: unknown
+    reversible: partial
+    undo: "Method 2 documents pm enable for the Google TV launcher and the setup wizard. Method 1 remaps Home with another app, which the README calls the safer way, and does not spell an undo."
+    pc_needed: depends
+    stars: unknown
+    last_commit: unknown
+    license: GPL-3.0
+    archived: false
+    note: "Open-source Android TV launcher on GitLab, so GitHub stars and the GitHub last-commit date are unknown. The feature list includes no ads. Play Store is one install path. The README does not say whether root is required."
+    sources:
+      kinds: https://gitlab.com/flauncher/flauncher/-/blob/master/README.md
+      root: https://gitlab.com/flauncher/flauncher/-/blob/master/README.md
+      reversible: https://gitlab.com/flauncher/flauncher/-/blob/master/README.md
+      undo: https://gitlab.com/flauncher/flauncher/-/blob/master/README.md
+      pc_needed: https://gitlab.com/flauncher/flauncher/-/blob/master/README.md
+      platforms: https://gitlab.com/flauncher/flauncher/-/blob/master/README.md
+      stars: https://gitlab.com/flauncher/flauncher
+      last_commit: https://gitlab.com/flauncher/flauncher
+      license: https://gitlab.com/flauncher/flauncher/-/blob/master/LICENSE
+
+  - id: smarttube
+    name: SmartTube
+    author: yuliskov
+    repo: yuliskov/SmartTube
+    branch: master
+    platforms: [android-tv, fire-tv]
+    kinds: [ad-free-client]
+    root: depends
+    reversible: partial
+    undo: "The voice-search section says the original YouTube app can be reinstalled if it was removed. The README does not describe removing SmartTube itself. On Android devices other than the Fire TV and Chromecast cases, that voice-search bridge needs root."
+    pc_needed: "no"
+    stars: 35732
+    last_commit: "2026-10-28"
+    license: MIT
+    archived: false
+    note: "Media client for Android TVs and TV boxes. The FAQ says SmartTube has no code to display ads. Supported devices include Fire TV released before October 2025. The README says it does not run on Samsung Tizen, LG webOS or Roku, and that the Fire TV Stick 4K Select and newer VegaOS sticks are out of scope. The easiest install named is the Downloader app on the TV."
+    sources:
+      kinds: https://github.com/yuliskov/SmartTube/blob/master/README.md
+      root: https://github.com/yuliskov/SmartTube/blob/master/README.md
+      reversible: https://github.com/yuliskov/SmartTube/blob/master/README.md
+      undo: https://github.com/yuliskov/SmartTube/blob/master/README.md
+      pc_needed: https://github.com/yuliskov/SmartTube/blob/master/README.md
+      platforms: https://github.com/yuliskov/SmartTube/blob/master/README.md
+      stars: https://api.github.com/repos/yuliskov/SmartTube
+      last_commit: https://github.com/yuliskov/SmartTube/commits/master
+      license: https://github.com/yuliskov/SmartTube/blob/master/LICENSE
+
+  - id: tizentube-cobalt
+    name: TizenTube Cobalt
+    author: reisxd
+    repo: reisxd/TizenTubeCobalt
+    branch: main
+    platforms: [android-tv]
+    kinds: [ad-free-client]
+    root: unknown
+    reversible: unknown
+    undo: "The README does not say how to remove the app or whether root is required."
+    pc_needed: depends
+    stars: 3426
+    last_commit: "2026-10-16"
+    license: BSD-3-Clause
+    archived: false
+    note: "Android client from the TizenTube author. The README says it removes ads and adds SponsorBlock, and that a Google TV certified device is the preferred target. Install is sideload via a file manager, ADB, or a platform-specific method."
+    sources:
+      kinds: https://github.com/reisxd/TizenTubeCobalt/blob/main/README.md
+      root: https://github.com/reisxd/TizenTubeCobalt/blob/main/README.md
+      reversible: https://github.com/reisxd/TizenTubeCobalt/blob/main/README.md
+      undo: https://github.com/reisxd/TizenTubeCobalt/blob/main/README.md
+      pc_needed: https://github.com/reisxd/TizenTubeCobalt/blob/main/README.md
+      platforms: https://github.com/reisxd/TizenTubeCobalt/blob/main/README.md
+      stars: https://api.github.com/repos/reisxd/TizenTubeCobalt
+      last_commit: https://github.com/reisxd/TizenTubeCobalt/commits/main
+      license: https://github.com/reisxd/TizenTubeCobalt/blob/main/LICENSE
+
+  - id: dumbtv
+    name: dumbtv
+    author: humblemuzzu
+    repo: humblemuzzu/dumbtv
+    branch: main
+    platforms: [fire-tv, oem-android]
+    kinds: [adb-debloat, clean-launcher, dns-block]
+    root: "no"
+    reversible: "yes"
+    undo: "scripts/restore.sh re-enables every package, clears the app and network rules, restores settings from the preflight snapshot, removes the DNS filter and gives Home back to Amazon."
+    pc_needed: "yes"
+    stars: 1778
+    last_commit: "2026-10-27"
+    license: MIT
+    archived: false
+    note: "Fire TV stick, Cube or Fire TV Edition set, from a computer. The device list names Hisense, Xiaomi, TCL, Insignia and Toshiba Fire TV Edition models. The DNS filter is described as blocking Fire OS updates while it runs. The launcher can be installed on its own. Code is MIT. The device catalog is CC BY-SA 4.0."
+    sources:
+      kinds: https://github.com/humblemuzzu/dumbtv/blob/main/README.md
+      root: https://github.com/humblemuzzu/dumbtv/blob/main/README.md
+      reversible: https://github.com/humblemuzzu/dumbtv/blob/main/README.md
+      undo: https://github.com/humblemuzzu/dumbtv/blob/main/README.md
+      pc_needed: https://github.com/humblemuzzu/dumbtv/blob/main/README.md
+      platforms: https://github.com/humblemuzzu/dumbtv/blob/main/README.md
+      stars: https://api.github.com/repos/humblemuzzu/dumbtv
+      last_commit: https://github.com/humblemuzzu/dumbtv/commits/main
+      license: https://github.com/humblemuzzu/dumbtv/blob/main/LICENSE
+
+  - id: hearth
+    name: Hearth
+    author: Srikarmk
+    repo: Srikarmk/hearth
+    branch: main
+    platforms: [fire-tv, oem-android]
+    kinds: [clean-launcher, adb-debloat, dns-block]
+    root: "no"
+    reversible: "yes"
+    undo: "TV_HOST set, ./uninstall.sh undoes the install. KEEP_DEBLOAT=1 removes only Hearth."
+    pc_needed: "yes"
+    stars: 0
+    last_commit: "2026-10-29"
+    license: MIT
+    archived: false
+    note: "Fire OS 7 or 8 home screen. Amazon's launcher stays enabled. SKIP_DEBLOAT=1 skips package cleanup. DNS=1 is optional AdGuard Private DNS. The model table names TCL, Hisense, Insignia, Xiaomi and Toshiba Fire TV sets. The repository description says no root."
+    sources:
+      kinds: https://github.com/Srikarmk/hearth/blob/main/README.md
+      root: https://github.com/Srikarmk/hearth
+      reversible: https://github.com/Srikarmk/hearth/blob/main/README.md
+      undo: https://github.com/Srikarmk/hearth/blob/main/README.md
+      pc_needed: https://github.com/Srikarmk/hearth/blob/main/README.md
+      platforms: https://github.com/Srikarmk/hearth/blob/main/README.md
+      stars: https://api.github.com/repos/Srikarmk/hearth
+      last_commit: https://github.com/Srikarmk/hearth/commits/main
+      license: https://github.com/Srikarmk/hearth/blob/main/LICENSE
+
+  - id: clean-your-fire-tv
+    name: Clean your Fire TV
+    author: theludiclabs
+    repo: theludiclabs/clean-your-fire-tv
+    branch: main
+    platforms: [fire-tv]
+    kinds: [adb-debloat, clean-launcher]
+    root: "no"
+    reversible: partial
+    undo: "uninstall.sh removes only the optional launcher. Packages disabled during the prompted cleanup need the restore script from that session, or pm enable per package."
+    pc_needed: "yes"
+    stars: 3
+    last_commit: "2026-10-22"
+    license: MIT
+    archived: false
+    note: "Prompt and optional launcher for Fire TV, adapted from CleanYourTV and separately maintained. The README says it does not root the TV or uninstall system packages, and that the prompt does not disable packages by itself. On the AFTT stick it describes, Fire OS rejected disabling manufacturer packages and the Home button stayed on Amazon Home."
+    sources:
+      kinds: https://github.com/theludiclabs/clean-your-fire-tv/blob/main/README.md
+      root: https://github.com/theludiclabs/clean-your-fire-tv/blob/main/README.md
+      reversible: https://github.com/theludiclabs/clean-your-fire-tv/blob/main/README.md
+      undo: https://github.com/theludiclabs/clean-your-fire-tv/blob/main/README.md
+      pc_needed: https://github.com/theludiclabs/clean-your-fire-tv/blob/main/README.md
+      platforms: https://github.com/theludiclabs/clean-your-fire-tv/blob/main/README.md
+      stars: https://api.github.com/repos/theludiclabs/clean-your-fire-tv
+      last_commit: https://github.com/theludiclabs/clean-your-fire-tv/commits/main
+      license: https://github.com/theludiclabs/clean-your-fire-tv/blob/main/LICENSE
+
+  - id: homehound
+    name: homehound
+    author: izzangalaxybyte
+    repo: izzangalaxybyte/lobby
+    branch: main
+    platforms: [fire-tv, android-tv]
+    kinds: [clean-launcher, adb-debloat]
+    root: unknown
+    reversible: partial
+    undo: "scripts/restore-firetv.sh turns the disabled Amazon packages back on. The README does not say how to turn the accessibility Home hook off."
+    pc_needed: depends
+    stars: 0
+    last_commit: "2026-10-27"
+    license: unknown
+    archived: false
+    note: "Minimal launcher for Fire TV and Android TV. The repository name is lobby. The debloat script disables the Amazon packages in debloat-list.txt and says nothing is uninstalled. Root and a license are not stated. Setup is an adb script or an on-TV accessibility toggle."
+    sources:
+      kinds: https://github.com/izzangalaxybyte/lobby/blob/main/README.md
+      root: https://github.com/izzangalaxybyte/lobby/blob/main/README.md
+      reversible: https://github.com/izzangalaxybyte/lobby/blob/main/README.md
+      undo: https://github.com/izzangalaxybyte/lobby/blob/main/README.md
+      pc_needed: https://github.com/izzangalaxybyte/lobby/blob/main/README.md
+      platforms: https://github.com/izzangalaxybyte/lobby/blob/main/README.md
+      stars: https://api.github.com/repos/izzangalaxybyte/lobby
+      last_commit: https://github.com/izzangalaxybyte/lobby/commits/main
+      license: https://github.com/izzangalaxybyte/lobby/blob/main/README.md
+
+  - id: projectivy-installer
+    name: Projectivy installer
+    author: Absolute-Projects-Public
+    repo: Absolute-Projects-Public/projectivy-installer
+    branch: main
+    platforms: [fire-tv, android-tv]
+    kinds: [adb-debloat, clean-launcher, dns-block]
+    root: "no"
+    reversible: "yes"
+    undo: "Changes are written to an undo log. Undo everything, or --undo, reverses them. The README says the undo restores Amazon's launcher without uninstalling anything."
+    pc_needed: "yes"
+    stars: 3
+    last_commit: "2026-10-28"
+    license: MIT
+    archived: false
+    note: "Windows and Linux wizards for Projectivy on a Fire TV Stick running Fire OS 7 or 8. The README says nothing in the tool needs root, and that it does not use the hidden API blacklist exemption. Optional Private DNS is documented. A Sony BRAVIA note is in the same README."
+    sources:
+      kinds: https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/README.md
+      root: https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/README.md
+      reversible: https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/README.md
+      undo: https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/README.md
+      pc_needed: https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/README.md
+      platforms: https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/README.md
+      stars: https://api.github.com/repos/Absolute-Projects-Public/projectivy-installer
+      last_commit: https://github.com/Absolute-Projects-Public/projectivy-installer/commits/main
+      license: https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/LICENSE
+
+  - id: fire-tv-debloat
+    name: fire-tv-debloat
+    author: anthonyrende
+    repo: anthonyrende/fire-tv-debloat
+    branch: main
+    platforms: [fire-tv, oem-android]
+    kinds: [adb-debloat]
+    root: "no"
+    reversible: "yes"
+    undo: "restore.sh re-enables or reinstalls packages. With no arguments it covers everything in bloat.txt. The README says nothing is deleted from the system partition, and a factory reset also brings it back."
+    pc_needed: "yes"
+    stars: 0
+    last_commit: "2026-10-17"
+    license: unknown
+    archived: false
+    note: "ADB scripts for one Insignia NS-43DF710 Fire TV Edition set. debloat.sh uninstalls for the current user or disables packages, and a protected-package guard is described. No license is stated."
+    sources:
+      kinds: https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md
+      root: https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md
+      reversible: https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md
+      undo: https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md
+      pc_needed: https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md
+      platforms: https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md
+      stars: https://api.github.com/repos/anthonyrende/fire-tv-debloat
+      last_commit: https://github.com/anthonyrende/fire-tv-debloat/commits/main
+      license: https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md
+
+  - id: freemytv-webos
+    name: Free My TV for webOS
+    author: danielthejoker18
+    repo: danielthejoker18/FreeMyTvWebOS
+    branch: main
+    platforms: [webos]
+    kinds: [clean-launcher]
+    root: "no"
+    reversible: "yes"
+    undo: "The README says the factory home screen is untouched. It does not print a separate removal command in the section that calls the app reversible."
+    pc_needed: depends
+    stars: 268
+    last_commit: "2026-10-29"
+    license: MIT
+    archived: false
+    note: "Separate LG webOS home screen from simbasjungles/free-my-tv. The README says no root, stock Developer Mode or the Homebrew Channel, and that a computer does not have to stay on after install. First install is a computer or an Android phone."
+    sources:
+      kinds: https://github.com/danielthejoker18/FreeMyTvWebOS/blob/main/README.md
+      root: https://github.com/danielthejoker18/FreeMyTvWebOS/blob/main/README.md
+      reversible: https://github.com/danielthejoker18/FreeMyTvWebOS/blob/main/README.md
+      undo: https://github.com/danielthejoker18/FreeMyTvWebOS/blob/main/README.md
+      pc_needed: https://github.com/danielthejoker18/FreeMyTvWebOS/blob/main/README.md
+      platforms: https://github.com/danielthejoker18/FreeMyTvWebOS/blob/main/README.md
+      stars: https://api.github.com/repos/danielthejoker18/FreeMyTvWebOS
+      last_commit: https://github.com/danielthejoker18/FreeMyTvWebOS/commits/main
+      license: https://github.com/danielthejoker18/FreeMyTvWebOS/blob/main/LICENSE
+
+  - id: cleanyourtv-webos
+    name: CleanYourTV for webOS
+    author: lasharor
+    repo: lasharor/cleanyourtv-WebOS
+    branch: dev
+    platforms: [webos]
+    kinds: [clean-launcher, firmware-root]
+    root: "yes"
+    reversible: "yes"
+    undo: "The README says LG system files are not modified, the Home takeover is a RAM mount, a reboot without the boot scripts brings LG's Home back, and the uninstall removes what was installed."
+    pc_needed: depends
+    stars: 323
+    last_commit: "2026-10-30"
+    license: MIT
+    archived: false
+    note: "Home screen for rooted LG webOS 5 and newer, with an optional debloat of LG ads and telemetry. Install is the Homebrew Channel on the TV, or one SSH command from a computer. Default branch is dev."
+    sources:
+      kinds: https://github.com/lasharor/cleanyourtv-WebOS/blob/dev/README.md
+      root: https://github.com/lasharor/cleanyourtv-WebOS/blob/dev/README.md
+      reversible: https://github.com/lasharor/cleanyourtv-WebOS/blob/dev/README.md
+      undo: https://github.com/lasharor/cleanyourtv-WebOS/blob/dev/README.md
+      pc_needed: https://github.com/lasharor/cleanyourtv-WebOS/blob/dev/README.md
+      platforms: https://github.com/lasharor/cleanyourtv-WebOS/blob/dev/README.md
+      stars: https://api.github.com/repos/lasharor/cleanyourtv-WebOS
+      last_commit: https://github.com/lasharor/cleanyourtv-WebOS/commits/dev
+      license: https://github.com/lasharor/cleanyourtv-WebOS/blob/dev/LICENSE
+
+  - id: youtube-webos
+    name: YouTube Ad-Free for webOS
+    author: webosbrew
+    repo: webosbrew/youtube-webos
+    branch: main
+    platforms: [webos]
+    kinds: [ad-free-client]
+    root: unknown
+    reversible: unknown
+    undo: "The README does not say whether root is required, and it does not describe uninstalling the app. It lists the Homebrew Channel and Device Manager as install paths."
+    pc_needed: depends
+    stars: 1538
+    last_commit: "2026-07-19"
+    license: GPL-3.0
+    archived: false
+    note: "webOS YouTube client with ad blocking and SponsorBlock. This repository is a fork of FriedChickenButt/youtube-webos. Requirements say to uninstall the official YouTube app first. They do not say the replacement itself needs root."
+    sources:
+      kinds: https://github.com/webosbrew/youtube-webos/blob/main/README.md
+      root: https://github.com/webosbrew/youtube-webos/blob/main/README.md
+      reversible: https://github.com/webosbrew/youtube-webos/blob/main/README.md
+      undo: https://github.com/webosbrew/youtube-webos/blob/main/README.md
+      pc_needed: https://github.com/webosbrew/youtube-webos/blob/main/README.md
+      platforms: https://github.com/webosbrew/youtube-webos/blob/main/README.md
+      stars: https://api.github.com/repos/webosbrew/youtube-webos
+      last_commit: https://github.com/webosbrew/youtube-webos/commits/main
+      license: https://github.com/webosbrew/youtube-webos/blob/main/LICENSE
+
+  - id: webos-homebrew
+    name: webOS Homebrew Channel
+    author: webosbrew
+    repo: webosbrew/webos-homebrew-channel
+    branch: main
+    platforms: [webos]
+    kinds: [homebrew, firmware-root]
+    root: "yes"
+    reversible: unknown
+    undo: "The README does not describe an uninstall. The recommended install is the rooting path, and several features including disabling some telemetry are marked as root."
+    pc_needed: unknown
+    stars: 1649
+    last_commit: "2026-08-03"
+    license: MIT
+    archived: false
+    note: "Unofficial webOS package repository and root-related tooling. The feature list includes a root-only switch for some telemetry. Other webOS rows use it as the on-TV installer. The README does not say a computer is mandatory. ares-install and an on-TV curl snippet are both listed."
+    sources:
+      kinds: https://github.com/webosbrew/webos-homebrew-channel/blob/main/README.md
+      root: https://github.com/webosbrew/webos-homebrew-channel/blob/main/README.md
+      reversible: https://github.com/webosbrew/webos-homebrew-channel/blob/main/README.md
+      undo: https://github.com/webosbrew/webos-homebrew-channel/blob/main/README.md
+      pc_needed: https://github.com/webosbrew/webos-homebrew-channel/blob/main/README.md
+      platforms: https://github.com/webosbrew/webos-homebrew-channel/blob/main/README.md
+      stars: https://api.github.com/repos/webosbrew/webos-homebrew-channel
+      last_commit: https://github.com/webosbrew/webos-homebrew-channel/commits/main
+      license: https://github.com/webosbrew/webos-homebrew-channel/blob/main/LICENSE
+
+  - id: lifesgood
+    name: Life's Good Without Spying
+    author: lewisdoesstuff
+    repo: lewisdoesstuff/lifesgoodwithoutspying
+    branch: main
+    platforms: [webos]
+    kinds: [dns-block, firmware-root]
+    root: "yes"
+    reversible: "yes"
+    undo: "The README says disabling protection puts the stopped services back, and disabling the DNS filter restores the original nameserver."
+    pc_needed: unknown
+    stars: 45
+    last_commit: "2026-10-30"
+    license: MIT
+    archived: false
+    note: "Homebrew app for a rooted LG webOS 4 or newer TV. It sinkholes LG ad, ACR and telemetry domains and stops the on-TV ad and ACR daemons. The README does not say whether install needs a computer."
+    sources:
+      kinds: https://github.com/lewisdoesstuff/lifesgoodwithoutspying/blob/main/README.md
+      root: https://github.com/lewisdoesstuff/lifesgoodwithoutspying/blob/main/README.md
+      reversible: https://github.com/lewisdoesstuff/lifesgoodwithoutspying/blob/main/README.md
+      undo: https://github.com/lewisdoesstuff/lifesgoodwithoutspying/blob/main/README.md
+      pc_needed: https://github.com/lewisdoesstuff/lifesgoodwithoutspying/blob/main/README.md
+      platforms: https://github.com/lewisdoesstuff/lifesgoodwithoutspying/blob/main/README.md
+      stars: https://api.github.com/repos/lewisdoesstuff/lifesgoodwithoutspying
+      last_commit: https://github.com/lewisdoesstuff/lifesgoodwithoutspying/commits/main
+      license: https://github.com/lewisdoesstuff/lifesgoodwithoutspying/blob/main/LICENSE
+
+  - id: tizenbrew
+    name: TizenBrew
+    author: reisxd
+    repo: reisxd/TizenBrew
+    branch: main
+    platforms: [tizen]
+    kinds: [homebrew]
+    root: unknown
+    reversible: unknown
+    undo: "The getting-started guide does not say whether root is required or how to remove TizenBrew."
+    pc_needed: "yes"
+    stars: 1692
+    last_commit: "2026-05-18"
+    license: GPL-3.0
+    archived: false
+    note: "Installer for modded Tizen apps, including TizenTube. It does not itself claim to remove ads. The preferred path is Developer Mode on a 2017-or-newer Samsung TV plus TizenBrew Installer Desktop on a computer."
+    sources:
+      kinds: https://github.com/reisxd/TizenBrew/blob/main/README.md
+      root: https://github.com/reisxd/TizenBrew/blob/main/docs/README.md
+      reversible: https://github.com/reisxd/TizenBrew/blob/main/docs/README.md
+      undo: https://github.com/reisxd/TizenBrew/blob/main/docs/README.md
+      pc_needed: https://github.com/reisxd/TizenBrew/blob/main/docs/README.md
+      platforms: https://github.com/reisxd/TizenBrew/blob/main/docs/README.md
+      stars: https://api.github.com/repos/reisxd/TizenBrew
+      last_commit: https://github.com/reisxd/TizenBrew/commits/main
+      license: https://github.com/reisxd/TizenBrew/blob/main/LICENSE
+
+  - id: tizentube
+    name: TizenTube
+    author: reisxd
+    repo: reisxd/TizenTube
+    branch: main
+    platforms: [tizen]
+    kinds: [ad-free-client]
+    root: unknown
+    reversible: unknown
+    undo: "Neither the README nor the install guide states root, or how to remove the app."
+    pc_needed: depends
+    stars: 2404
+    last_commit: "2026-10-16"
+    license: GPL-3.0
+    archived: false
+    note: "TizenBrew module, also described as a standalone app, that removes ads and adds SponsorBlock. The install guide targets Tizen 3 (2017) or later and uses Apps2Samsung on a computer or an Android phone."
+    sources:
+      kinds: https://github.com/reisxd/TizenTube/blob/main/README.md
+      root: https://github.com/reisxd/TizenTube/blob/main/docs/README.md
+      reversible: https://github.com/reisxd/TizenTube/blob/main/docs/README.md
+      undo: https://github.com/reisxd/TizenTube/blob/main/docs/README.md
+      pc_needed: https://github.com/reisxd/TizenTube/blob/main/docs/README.md
+      platforms: https://github.com/reisxd/TizenTube/blob/main/docs/README.md
+      stars: https://api.github.com/repos/reisxd/TizenTube
+      last_commit: https://github.com/reisxd/TizenTube/commits/main
+      license: https://github.com/reisxd/TizenTube/blob/main/LICENSE
+
+  - id: tizenbrew-installer
+    name: TizenBrew Installer
+    author: reisxd
+    repo: reisxd/TizenBrewInstaller
+    branch: main
+    platforms: [tizen]
+    kinds: [homebrew]
+    root: unknown
+    reversible: unknown
+    undo: "The README does not say whether root is required or how to remove an app it installed."
+    pc_needed: depends
+    stars: 262
+    last_commit: "2026-07-28"
+    license: GPL-3.0
+    archived: false
+    note: "Desktop or Android installer for TizenBrew and other Tizen packages, with resigning for Tizen 7 and newer. It does not itself claim to remove ads. Free My TV's Samsung instructions name this installer."
+    sources:
+      kinds: https://github.com/reisxd/TizenBrewInstaller/blob/main/README.md
+      root: https://github.com/reisxd/TizenBrewInstaller/blob/main/README.md
+      reversible: https://github.com/reisxd/TizenBrewInstaller/blob/main/README.md
+      undo: https://github.com/reisxd/TizenBrewInstaller/blob/main/README.md
+      pc_needed: https://github.com/reisxd/TizenBrewInstaller/blob/main/README.md
+      platforms: https://github.com/reisxd/TizenBrewInstaller/blob/main/README.md
+      stars: https://api.github.com/repos/reisxd/TizenBrewInstaller
+      last_commit: https://github.com/reisxd/TizenBrewInstaller/commits/main
+      license: https://github.com/reisxd/TizenBrewInstaller/blob/main/LICENSE
+
+  - id: pi-hole
+    name: Pi-hole
+    author: pi-hole
+    repo: pi-hole/pi-hole
+    branch: master
+    platforms: [network]
+    kinds: [dns-block]
+    root: "yes"
+    reversible: unknown
+    undo: "The README does not describe an uninstall. The installer says it must be root to install."
+    pc_needed: "yes"
+    stars: 61568
+    last_commit: "2026-10-17"
+    license: EUPL-1.2
+    archived: false
+    note: "DNS sinkhole the README describes as network-wide ad blocking, including smart TVs, with no client software on the television. It runs on the owner's Linux hardware. The Roku list below is meant to be added to it. GitHub's license field is NOASSERTION. The license file states EUPL-1.2."
+    sources:
+      kinds: https://github.com/pi-hole/pi-hole/blob/master/README.md
+      root: https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh
+      reversible: https://github.com/pi-hole/pi-hole/blob/master/README.md
+      undo: https://github.com/pi-hole/pi-hole/blob/master/README.md
+      pc_needed: https://github.com/pi-hole/pi-hole/blob/master/README.md
+      platforms: https://github.com/pi-hole/pi-hole/blob/master/README.md
+      stars: https://api.github.com/repos/pi-hole/pi-hole
+      last_commit: https://github.com/pi-hole/pi-hole/commits/master
+      license: https://github.com/pi-hole/pi-hole/blob/master/LICENSE
+
+  - id: adguard-home
+    name: AdGuard Home
+    author: AdguardTeam
+    repo: AdguardTeam/AdGuardHome
+    branch: master
+    platforms: [network]
+    kinds: [dns-block]
+    root: "no"
+    reversible: "yes"
+    undo: "The install instructions include -u to uninstall AdGuard Home."
+    pc_needed: "yes"
+    stars: 37934
+    last_commit: "2026-10-30"
+    license: GPL-3.0
+    archived: false
+    note: "Network-wide ads and trackers DNS server. The README says this class of blocker can cover smart TVs, and that AdGuard Home can run without root privileges. It also says DNS blocking cannot remove YouTube or Twitch ads. It does not document a per-brand television menu."
+    sources:
+      kinds: https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md
+      root: https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md
+      reversible: https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md
+      undo: https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md
+      pc_needed: https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md
+      platforms: https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md
+      stars: https://api.github.com/repos/AdguardTeam/AdGuardHome
+      last_commit: https://github.com/AdguardTeam/AdGuardHome/commits/master
+      license: https://github.com/AdguardTeam/AdGuardHome/blob/master/LICENSE.txt
+
+  - id: roku-ads
+    name: Pi-hole Roku ads blocklist
+    author: b02860de585071a2
+    repo: b02860de585071a2/pihole-roku-ads-blocklist
+    branch: main
+    platforms: [roku]
+    kinds: [dns-block]
+    root: unknown
+    reversible: unknown
+    undo: "The README does not say how to remove the list, whether the television needs root, or whether a computer is required."
+    pc_needed: unknown
+    stars: 0
+    last_commit: "2023-09-10"
+    license: GPL-3.0
+    archived: false
+    note: "A hosts file of Roku ad domains for Pi-hole. The README says banner ad containers may still appear, empty. The raw URL printed in that README points at a different owner name. The file in this repository is hosts."
+    sources:
+      kinds: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
+      root: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
+      reversible: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
+      undo: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
+      pc_needed: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
+      platforms: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md
+      stars: https://api.github.com/repos/b02860de585071a2/pihole-roku-ads-blocklist
+      last_commit: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/commits/main
+      license: https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/LICENSE
+
+  - id: redmi-toolkit
+    name: Redmi TV Toolkit
+    author: haiktl
+    repo: haiktl/redmi-tv-toolkit
+    branch: main
+    platforms: [oem-android]
+    kinds: [clean-launcher, adb-debloat]
+    root: "no"
+    reversible: "yes"
+    undo: "scripts/rollback.ps1 restores Home, the accessibility list, the startup app and PeriodicCleaner from the latest local backup, then removes the helper app."
+    pc_needed: "yes"
+    stars: 3
+    last_commit: "2026-08-11"
+    license: Apache-2.0
+    archived: false
+    note: "No-root helper for MiTV-ASTR0 / blueplanet. The README says it does not unlock the bootloader or change system partitions, and that other firmware is refused unless the override switch in the README is passed. It installs Projectivy from spocky/miproja1 releases. The documented computer is Windows with PowerShell 7."
+    sources:
+      kinds: https://github.com/haiktl/redmi-tv-toolkit/blob/main/README.md
+      root: https://github.com/haiktl/redmi-tv-toolkit/blob/main/README.md
+      reversible: https://github.com/haiktl/redmi-tv-toolkit/blob/main/README.md
+      undo: https://github.com/haiktl/redmi-tv-toolkit/blob/main/README.md
+      pc_needed: https://github.com/haiktl/redmi-tv-toolkit/blob/main/README.md
+      platforms: https://github.com/haiktl/redmi-tv-toolkit/blob/main/README.md
+      stars: https://api.github.com/repos/haiktl/redmi-tv-toolkit
+      last_commit: https://github.com/haiktl/redmi-tv-toolkit/commits/main
+      license: https://github.com/haiktl/redmi-tv-toolkit/blob/main/LICENSE
+
+  - id: quiet-tv
+    name: Quiet TV
+    author: BeatsAD
+    repo: BeatsAD/quiet-tv
+    branch: main
+    platforms: [android-tv, oem-android]
+    kinds: [clean-launcher, adb-debloat]
+    root: "no"
+    reversible: "yes"
+    undo: "App management can disable, re-enable, uninstall and restore installs once local TCP ADB is connected. The README says the original desktop recovery path is kept."
+    pc_needed: depends
+    stars: 161
+    last_commit: "2026-10-30"
+    license: MIT
+    archived: false
+    note: "Android TV launcher for China-market sets, based on CleanYourTV, with no ads and no recommendation row. Day-to-day layout does not need ADB. First-time setup and boot-ad handling are described as a computer step. The README says no root and no firmware flash."
+    sources:
+      kinds: https://github.com/BeatsAD/quiet-tv/blob/main/README.md
+      root: https://github.com/BeatsAD/quiet-tv/blob/main/README.md
+      reversible: https://github.com/BeatsAD/quiet-tv/blob/main/README.md
+      undo: https://github.com/BeatsAD/quiet-tv/blob/main/README.md
+      pc_needed: https://github.com/BeatsAD/quiet-tv/blob/main/README.md
+      platforms: https://github.com/BeatsAD/quiet-tv/blob/main/README.md
+      stars: https://api.github.com/repos/BeatsAD/quiet-tv
+      last_commit: https://github.com/BeatsAD/quiet-tv/commits/main
+      license: https://github.com/BeatsAD/quiet-tv/blob/main/LICENSE
+
+  - id: home-tv-cn
+    name: 简居 TV
+    author: Jimu888
+    repo: Jimu888/home-tv-cn
+    branch: main
+    platforms: [oem-android, android-tv]
+    kinds: [clean-launcher]
+    root: unknown
+    reversible: "yes"
+    undo: "tools/restore.sh drops this app's home-takeover permissions and tells the reader not to disable or delete the factory desktop. Choosing the factory desktop again may still be required."
+    pc_needed: "yes"
+    stars: 123
+    last_commit: "2026-10-21"
+    license: MIT
+    archived: false
+    note: "Mainland-app home screen forked from Aerial at a named commit. The README says it has no ad slots and does not change DNS, and that in-app ads inside video apps stay the platform's. It does not say whether root is required. Install notes name a Xiaomi MiTV-MFTR0 and say other brands are outside that note."
+    sources:
+      kinds: https://github.com/Jimu888/home-tv-cn/blob/main/README.md
+      root: https://github.com/Jimu888/home-tv-cn/blob/main/README.md
+      reversible: https://github.com/Jimu888/home-tv-cn/blob/main/README.md
+      undo: https://github.com/Jimu888/home-tv-cn/blob/main/README.md
+      pc_needed: https://github.com/Jimu888/home-tv-cn/blob/main/README.md
+      platforms: https://github.com/Jimu888/home-tv-cn/blob/main/README.md
+      stars: https://api.github.com/repos/Jimu888/home-tv-cn
+      last_commit: https://github.com/Jimu888/home-tv-cn/commits/main
+      license: https://github.com/Jimu888/home-tv-cn/blob/main/LICENSE
+
+  - id: tcl-tv-detox
+    name: tcl-tv-detox
+    author: muniraja96
+    repo: muniraja96/tcl-tv-detox
+    branch: main
+    platforms: [oem-android]
+    kinds: [adb-debloat, clean-launcher]
+    root: unknown
+    reversible: "yes"
+    undo: "The README says every change can be undone and points at tv-changes.md for an undo command per change."
+    pc_needed: "yes"
+    stars: 0
+    last_commit: "2026-10-25"
+    license: unknown
+    archived: false
+    note: "Write-up for one TCL 32S5500, plus a patched TV Detox home so HDMI tiles reach TCL's own player. It is not a general installer. The home screen credits Ansub's MIT license. This repository does not state its own license or whether root is required."
+    sources:
+      kinds: https://github.com/muniraja96/tcl-tv-detox/blob/main/README.md
+      root: https://github.com/muniraja96/tcl-tv-detox/blob/main/README.md
+      reversible: https://github.com/muniraja96/tcl-tv-detox/blob/main/README.md
+      undo: https://github.com/muniraja96/tcl-tv-detox/blob/main/README.md
+      pc_needed: https://github.com/muniraja96/tcl-tv-detox/blob/main/README.md
+      platforms: https://github.com/muniraja96/tcl-tv-detox/blob/main/README.md
+      stars: https://api.github.com/repos/muniraja96/tcl-tv-detox
+      last_commit: https://github.com/muniraja96/tcl-tv-detox/commits/main
+      license: https://github.com/muniraja96/tcl-tv-detox/blob/main/README.md
+
+  - id: tcl-hdmi-home
+    name: DumbTV HDMI
+    author: jtlemkin
+    repo: jtlemkin/DumbTV
+    branch: main
+    platforms: [oem-android]
+    kinds: [clean-launcher, adb-debloat]
+    root: "no"
+    reversible: "yes"
+    undo: "scripts/rollback-dumbtv.py restores Google TV Home and the previous auto-start restriction. An emergency pm enable plus set-home-activity is also printed. --uninstall removes the app too."
+    pc_needed: "yes"
+    stars: 0
+    last_commit: "2026-10-28"
+    license: unknown
+    archived: false
+    note: "HDMI-first home for one TCL Google TV on Android 12. It disables Google TV Home and does not describe an ad-domain list. The README says no root. No license is stated. The name clashes with humblemuzzu/dumbtv, which is a different project."
+    sources:
+      kinds: https://github.com/jtlemkin/DumbTV/blob/main/README.md
+      root: https://github.com/jtlemkin/DumbTV/blob/main/README.md
+      reversible: https://github.com/jtlemkin/DumbTV/blob/main/README.md
+      undo: https://github.com/jtlemkin/DumbTV/blob/main/README.md
+      pc_needed: https://github.com/jtlemkin/DumbTV/blob/main/README.md
+      platforms: https://github.com/jtlemkin/DumbTV/blob/main/README.md
+      stars: https://api.github.com/repos/jtlemkin/DumbTV
+      last_commit: https://github.com/jtlemkin/DumbTV/commits/main
+      license: https://github.com/jtlemkin/DumbTV/blob/main/README.md
+
+left_out:
+  - name: NextDNS CLI
+    url: https://github.com/nextdns/nextdns
+    why: The README describes a DNS-over-HTTPS client for routers and desktops. It does not say the client blocks ads, and it does not mention televisions.
+  - name: samsung-tizen-tv-debloat
+    url: https://github.com/ardazeytin/samsung-tizen-tv-debloat
+    why: The README says sdb cannot remove the ads, and that the steps which do cut ads are remote settings rather than this tool.
+  - name: personalDNSfilter
+    url: https://github.com/IngoZenz/personaldnsfilter
+    why: The README is only a pointer to an external site, so root, undo and television scope are not stated in the repository. dumbtv documents the copy it runs.
+  - name: webOS Dev Manager
+    url: https://github.com/webosbrew/dev-manager-desktop
+    why: Desktop tool for developer mode and rooted webOS. It installs packages and does not itself remove ads. The YouTube webOS row links it as an install path.
+  - name: Firestick Cleaner and Launcher Replacer
+    url: https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer
+    why: Overlaps the Projectivy installer row. That row is the one whose README states an undo log.
+  - name: uveer18/xiaomitv
+    url: https://github.com/uveer18/xiaomitv
+    why: The README follows the CleanYourTV prompt and launcher, and the license file keeps Gathin's copyright, so it is not a separate Xiaomi tool.
+  - name: SmartTubeLegacy
+    url: https://github.com/yuliskov/SmartTubeLegacy
+    why: GitHub marks the repository archived. SmartTube is the current project.
+  - name: Apps2Samsung
+    url: https://github.com/Apps2Samsung/Apps2Samsung
+    why: Named by TizenTube's install guide as the installer. Its own root and undo statements were not reviewed, so it has no row.
+  - name: Awesome Android TV FOSS Apps
+    url: https://github.com/Generator/Awesome-Android-TV-FOSS-Apps
+    why: Linked under Related lists. Its text and layout are not reused, and it is a general app list rather than a brand-by-brand ad-strip table.
+  - name: Hisense VIDAA, Vizio, and Roku beyond DNS
+    url: https://github.com/Gathin23/cleanyourtv/blob/main/README.md
+    why: CleanYourTV's README says VIDAA, Vizio and Roku have no ADB path. No other public README in this pass stated a reversible on-device tool for VIDAA or Vizio. Roku is only the hosts list above.
+  - name: Country forks and skins
+    url: https://github.com/Gathin23/cleanyourtv
+    why: Forks and skins of CleanYourTV, Aerial, Free My TV and TV Detox repeat the upstream claims. Quiet TV and 简居 TV stay because their READMEs add their own scope.
