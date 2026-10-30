@@ -2,7 +2,9 @@
 
 # awesome-tv-debloat
 
-Every way to strip ads off a smart TV, listed by brand.
+Smart TV ad-stripping projects by brand: root, undo, computer needed, each cell sourced. Not tested.
+
+Assembled by an AI coding agent from each project's own README/code; curated via pull requests.
 
 ## Safety
 
@@ -10,7 +12,7 @@ ADB and similar debug tools can leave a television without a home screen, withou
 
 ## How to read this
 
-Root is yes, no, or depends. Undo is yes, partial, or no, followed by the way back the project describes. PC is whether a computer is required. unknown means that project's README or code does not say. Stars and the last commit date come from the GitHub API. A project that is not hosted on GitHub has unknown in those two cells. The license is an SPDX identifier taken from the project's license file, or unknown when no license is stated. Kind is one or more of DNS blocking, clean launcher, ad-free client, ADB debloat, homebrew, and firmware / root.
+Root is yes, no, or depends. Undo is yes, partial, or no, followed by the way back the project describes. PC is whether a computer is required. unknown means that project's README or code does not say. Stars and the last commit date come from the GitHub API. A project that is not hosted on GitHub has unknown in those two cells. The license is an SPDX identifier taken from the project's license file, or unknown when no license is stated. Kind is one or more of on-device settings, DNS blocking, clean launcher, ad-free client, ADB debloat, homebrew, and firmware / root.
 
 ## Google TV and Android TV
 
@@ -60,17 +62,17 @@ Notes
 
 ## Fire TV
 
-**Start here: [Hearth](https://github.com/Srikarmk/hearth)** by [Srikarmk](https://github.com/Srikarmk). The README says Amazon's launcher stays installed and enabled, pressing Home twice still opens it, and SKIP_DEBLOAT=1 installs the home screen without the package cleanup. uninstall.sh removes that install. [src](https://github.com/Srikarmk/hearth/blob/main/README.md)
+**Start here: [dumbtv](https://github.com/humblemuzzu/dumbtv)** by [humblemuzzu](https://github.com/humblemuzzu). dumbtv's README says the cleanup needs no root, and scripts/restore.sh re-enables every package, puts the settings snapshot back, removes the DNS filter, and gives Home back to Amazon. That itemized undo is why this row is first. Hearth also has uninstall.sh, and SKIP_DEBLOAT=1 installs only the home screen, but that README does not list what the command restores. The pick follows the documented undo, not the star count. [src](https://github.com/humblemuzzu/dumbtv/blob/main/README.md)
 
 11 entries. The first row is the start-here pick. The rows after it run from the smaller change to the larger one: no root before root, a full way back before a partial one, and no computer before a computer.
 
 | Tool | Kind | Root | Undo | PC | Stars | Last commit | License |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| [Hearth](https://github.com/Srikarmk/hearth)<br>[Srikarmk](https://github.com/Srikarmk) | DNS blocking, Clean launcher, ADB debloat [src](https://github.com/Srikarmk/hearth/blob/main/README.md) | no [src](https://github.com/Srikarmk/hearth) | yes — TV_HOST set, ./uninstall.sh undoes the install. KEEP_DEBLOAT=1 removes only Hearth. [src](https://github.com/Srikarmk/hearth/blob/main/README.md) | yes [src](https://github.com/Srikarmk/hearth/blob/main/README.md) | 0 [src](https://api.github.com/repos/Srikarmk/hearth) | 2026-10-29 [src](https://github.com/Srikarmk/hearth/commits/main) | MIT [src](https://github.com/Srikarmk/hearth/blob/main/LICENSE) |
+| [dumbtv](https://github.com/humblemuzzu/dumbtv)<br>[humblemuzzu](https://github.com/humblemuzzu) | DNS blocking, Clean launcher, ADB debloat [src](https://github.com/humblemuzzu/dumbtv/blob/main/README.md) | no [src](https://github.com/humblemuzzu/dumbtv/blob/main/README.md) | yes — scripts/restore.sh re-enables every package, clears the app and network rules, restores settings from the preflight snapshot, removes the DNS filter and gives Home back to Amazon. [src](https://github.com/humblemuzzu/dumbtv/blob/main/README.md) | yes [src](https://github.com/humblemuzzu/dumbtv/blob/main/README.md) | 1,778 [src](https://api.github.com/repos/humblemuzzu/dumbtv) | 2026-10-27 [src](https://github.com/humblemuzzu/dumbtv/commits/main) | MIT [src](https://github.com/humblemuzzu/dumbtv/blob/main/LICENSE) |
 | [Tellyscope](https://github.com/man15h/tellyscope)<br>[man15h](https://github.com/man15h) | DNS blocking, Clean launcher, ADB debloat [src](https://github.com/man15h/tellyscope/blob/main/README.md) | no [src](https://github.com/man15h/tellyscope/blob/main/README.md) | yes — Built-in apps are disabled with pm disable-user, which Undo or pm enable reverses. Restore everything turns back on only what Tellyscope turned off. Uninstall is offered only for apps the owner installed. [src](https://github.com/man15h/tellyscope/blob/main/README.md) | no [src](https://github.com/man15h/tellyscope/blob/main/README.md) | 825 [src](https://api.github.com/repos/man15h/tellyscope) | 2026-10-29 [src](https://github.com/man15h/tellyscope/commits/main) | GPL-3.0 [src](https://github.com/man15h/tellyscope/blob/main/LICENSE) |
 | [CleanYourTV](https://github.com/Gathin23/cleanyourtv)<br>[Gathin23](https://github.com/Gathin23) | Clean launcher, ADB debloat [src](https://github.com/Gathin23/cleanyourtv/blob/main/README.md) | no [src](https://github.com/Gathin23/cleanyourtv/blob/main/README.md) | yes — Packages are disabled with pm disable-user and nothing is uninstalled, so the restore script can undo every step. The README also calls this a one-line restore. [src](https://github.com/Gathin23/cleanyourtv/blob/main/README.md) | yes [src](https://github.com/Gathin23/cleanyourtv/blob/main/README.md) | 46,068 [src](https://api.github.com/repos/Gathin23/cleanyourtv) | 2026-10-30 [src](https://github.com/Gathin23/cleanyourtv/commits/main) | MIT [src](https://github.com/Gathin23/cleanyourtv/blob/main/LICENSE) |
-| [dumbtv](https://github.com/humblemuzzu/dumbtv)<br>[humblemuzzu](https://github.com/humblemuzzu) | DNS blocking, Clean launcher, ADB debloat [src](https://github.com/humblemuzzu/dumbtv/blob/main/README.md) | no [src](https://github.com/humblemuzzu/dumbtv/blob/main/README.md) | yes — scripts/restore.sh re-enables every package, clears the app and network rules, restores settings from the preflight snapshot, removes the DNS filter and gives Home back to Amazon. [src](https://github.com/humblemuzzu/dumbtv/blob/main/README.md) | yes [src](https://github.com/humblemuzzu/dumbtv/blob/main/README.md) | 1,778 [src](https://api.github.com/repos/humblemuzzu/dumbtv) | 2026-10-27 [src](https://github.com/humblemuzzu/dumbtv/commits/main) | MIT [src](https://github.com/humblemuzzu/dumbtv/blob/main/LICENSE) |
 | [fire-tv-debloat](https://github.com/anthonyrende/fire-tv-debloat)<br>[anthonyrende](https://github.com/anthonyrende) | ADB debloat [src](https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md) | no [src](https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md) | yes — restore.sh re-enables or reinstalls packages. With no arguments it covers everything in bloat.txt. The README says nothing is deleted from the system partition, and a factory reset also brings it back. [src](https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md) | yes [src](https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md) | 0 [src](https://api.github.com/repos/anthonyrende/fire-tv-debloat) | 2026-10-17 [src](https://github.com/anthonyrende/fire-tv-debloat/commits/main) | unknown [src](https://github.com/anthonyrende/fire-tv-debloat/blob/main/README.md) |
+| [Hearth](https://github.com/Srikarmk/hearth)<br>[Srikarmk](https://github.com/Srikarmk) | DNS blocking, Clean launcher, ADB debloat [src](https://github.com/Srikarmk/hearth/blob/main/README.md) | no [src](https://github.com/Srikarmk/hearth) | yes — TV_HOST set, ./uninstall.sh undoes the install. KEEP_DEBLOAT=1 removes only Hearth. [src](https://github.com/Srikarmk/hearth/blob/main/README.md) | yes [src](https://github.com/Srikarmk/hearth/blob/main/README.md) | 0 [src](https://api.github.com/repos/Srikarmk/hearth) | 2026-10-29 [src](https://github.com/Srikarmk/hearth/commits/main) | MIT [src](https://github.com/Srikarmk/hearth/blob/main/LICENSE) |
 | [Projectivy installer](https://github.com/Absolute-Projects-Public/projectivy-installer)<br>[Absolute-Projects-Public](https://github.com/Absolute-Projects-Public) | DNS blocking, Clean launcher, ADB debloat [src](https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/README.md) | no [src](https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/README.md) | yes — Changes are written to an undo log. Undo everything, or --undo, reverses them. The README says the undo restores Amazon's launcher without uninstalling anything. [src](https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/README.md) | yes [src](https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/README.md) | 3 [src](https://api.github.com/repos/Absolute-Projects-Public/projectivy-installer) | 2026-10-28 [src](https://github.com/Absolute-Projects-Public/projectivy-installer/commits/main) | MIT [src](https://github.com/Absolute-Projects-Public/projectivy-installer/blob/main/LICENSE) |
 | [Clean your Fire TV](https://github.com/theludiclabs/clean-your-fire-tv)<br>[theludiclabs](https://github.com/theludiclabs) | Clean launcher, ADB debloat [src](https://github.com/theludiclabs/clean-your-fire-tv/blob/main/README.md) | no [src](https://github.com/theludiclabs/clean-your-fire-tv/blob/main/README.md) | partial — uninstall.sh removes only the optional launcher. Packages disabled during the prompted cleanup need the restore script from that session, or pm enable per package. [src](https://github.com/theludiclabs/clean-your-fire-tv/blob/main/README.md) | yes [src](https://github.com/theludiclabs/clean-your-fire-tv/blob/main/README.md) | 3 [src](https://api.github.com/repos/theludiclabs/clean-your-fire-tv) | 2026-10-22 [src](https://github.com/theludiclabs/clean-your-fire-tv/commits/main) | MIT [src](https://github.com/theludiclabs/clean-your-fire-tv/blob/main/LICENSE) |
 | [SmartTube](https://github.com/yuliskov/SmartTube)<br>[yuliskov](https://github.com/yuliskov) | Ad-free client [src](https://github.com/yuliskov/SmartTube/blob/master/README.md) | depends [src](https://github.com/yuliskov/SmartTube/blob/master/README.md) | partial — The voice-search section says the original YouTube app can be reinstalled if it was removed. The README does not describe removing SmartTube itself. On Android devices other than the Fire TV and Chromecast cases, that voice-search bridge needs root. [src](https://github.com/yuliskov/SmartTube/blob/master/README.md) | no [src](https://github.com/yuliskov/SmartTube/blob/master/README.md) | 35,732 [src](https://api.github.com/repos/yuliskov/SmartTube) | 2026-10-28 [src](https://github.com/yuliskov/SmartTube/commits/master) | MIT [src](https://github.com/yuliskov/SmartTube/blob/master/LICENSE) |
@@ -80,11 +82,11 @@ Notes
 
 Notes
 
-- **Hearth.** Fire OS 7 or 8 home screen. Amazon's launcher stays enabled. SKIP_DEBLOAT=1 skips package cleanup. DNS=1 is optional AdGuard Private DNS. The model table names TCL, Hisense, Insignia, Xiaomi and Toshiba Fire TV sets. The repository description says no root.
+- **dumbtv.** Fire TV stick, Cube or Fire TV Edition set, from a computer. The device list names Hisense, Xiaomi, TCL, Insignia and Toshiba Fire TV Edition models. The DNS filter is described as blocking Fire OS updates while it runs. The launcher can be installed on its own. Code is MIT. The device catalog is CC BY-SA 4.0.
 - **Tellyscope.** Phone app. The README names Android TV, Google TV, NVIDIA Shield and Fire TV, and says a real-hardware check for Shield and Fire TV is still open. Tweaks include ad-blocking Private DNS, and it can install a launcher.
 - **CleanYourTV.** Computer, or a coding assistant on that computer, for Android TV and Google TV. On Fire TV the README says only the debloat half applies. Samsung Tizen, LG webOS, Roku, Vizio and Hisense VIDAA are named as unsupported. The brand table includes Xiaomi, TCL and Hisense Android sets.
-- **dumbtv.** Fire TV stick, Cube or Fire TV Edition set, from a computer. The device list names Hisense, Xiaomi, TCL, Insignia and Toshiba Fire TV Edition models. The DNS filter is described as blocking Fire OS updates while it runs. The launcher can be installed on its own. Code is MIT. The device catalog is CC BY-SA 4.0.
 - **fire-tv-debloat.** ADB scripts for one Insignia NS-43DF710 Fire TV Edition set. debloat.sh uninstalls for the current user or disables packages, and a protected-package guard is described. No license is stated.
+- **Hearth.** Fire OS 7 or 8 home screen. Amazon's launcher stays enabled. SKIP_DEBLOAT=1 skips package cleanup. DNS=1 is optional AdGuard Private DNS. The model table names TCL, Hisense, Insignia, Xiaomi and Toshiba Fire TV sets. The repository description says no root.
 - **Projectivy installer.** Windows and Linux wizards for Projectivy on a Fire TV Stick running Fire OS 7 or 8. The README says nothing in the tool needs root, and that it does not use the hidden API blacklist exemption. Optional Private DNS is documented. A Sony BRAVIA note is in the same README.
 - **Clean your Fire TV.** Prompt and optional launcher for Fire TV, adapted from CleanYourTV and separately maintained. The README says it does not root the TV or uninstall system packages, and that the prompt does not disable packages by itself. On the AFTT stick it describes, Fire OS rejected disabling manufacturer packages and the Home button stayed on Amazon Home.
 - **SmartTube.** Media client for Android TVs and TV boxes. The FAQ says SmartTube has no code to display ads. Supported devices include Fire TV released before October 2025. The README says it does not run on Samsung Tizen, LG webOS or Roku, and that the Fire TV Stick 4K Select and newer VegaOS sticks are out of scope. The easiest install named is the Downloader app on the TV.
@@ -140,7 +142,7 @@ Notes
 
 ## Xiaomi, TCL, Hisense and other Android OEMs
 
-**Start here: [Aerial](https://github.com/pengchujin/aerial-tv)** by [pengchujin](https://github.com/pengchujin). The README says Aerial needs no root, does not modify system apps, and a restore command returns the previous desktop. A USB-stick install is also described, so a computer is not the only path. Hisense VIDAA is not this table. CleanYourTV's README says VIDAA has no ADB path. [src](https://github.com/pengchujin/aerial-tv/blob/main/README.md)
+**Start here: [Aerial](https://github.com/pengchujin/aerial-tv)** by [pengchujin](https://github.com/pengchujin). The README says Aerial needs no root, does not modify system apps, and a restore command returns the previous desktop. A USB-stick install is also described, so a computer is not the only path. Hisense sets that run VIDAA are in the Hisense VIDAA section. CleanYourTV's README says VIDAA has no ADB, which is why the Android tools on this table do not cover those sets. [src](https://github.com/pengchujin/aerial-tv/blob/main/README.md)
 
 16 entries. The first row is the start-here pick. The rows after it run from the smaller change to the larger one: no root before root, a full way back before a partial one, and no computer before a computer.
 
@@ -182,23 +184,41 @@ Notes
 - **简居 TV.** Mainland-app home screen forked from Aerial at a named commit. The README says it has no ad slots and does not change DNS, and that in-app ads inside video apps stay the platform's. It does not say whether root is required. Install notes name a Xiaomi MiTV-MFTR0 and say other brands are outside that note.
 - **TV Detox.** A small home screen plus a prompt for a coding assistant. The README says apps are turned off, never deleted, and that the assistant has to run on a computer on the same network. It does not say whether root is required. Philips and TCL behavior is called out in the same file.
 
-## Roku
+## Hisense VIDAA
 
-**Start here: [Pi-hole Roku ads blocklist](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist)** by [b02860de585071a2](https://github.com/b02860de585071a2). This hosts file is the only Roku-specific public list in v1. The README says banner containers may still show up empty. It does not say whether root is involved, how to remove the list, or whether a computer is required. [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md)
+**Start here: [VIDAA Clean TV](https://github.com/HALCONDEORO/vidaa-clean-tv)** by [HALCONDEORO](https://github.com/HALCONDEORO). The README says there is no root, nothing is installed on the TV, and everything can be undone. The remote-only settings path needs no computer. DNS filtering is optional and runs on the network. CleanYourTV's showcase lists this project, which this README also states. The same README says no model has a completed hardware-verification session, so the row is untested on hardware. [src](https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md)
 
 1 entries. The first row is the start-here pick. The rows after it run from the smaller change to the larger one: no root before root, a full way back before a partial one, and no computer before a computer.
 
 | Tool | Kind | Root | Undo | PC | Stars | Last commit | License |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| [Pi-hole Roku ads blocklist](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist)<br>[b02860de585071a2](https://github.com/b02860de585071a2) | DNS blocking [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md) | unknown [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md) | unknown — The README does not say how to remove the list, whether the television needs root, or whether a computer is required. [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md) | unknown [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md) | 0 [src](https://api.github.com/repos/b02860de585071a2/pihole-roku-ads-blocklist) | 2023-09-10 [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/commits/main) | GPL-3.0 [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/LICENSE) |
+| [VIDAA Clean TV](https://github.com/HALCONDEORO/vidaa-clean-tv)<br>[HALCONDEORO](https://github.com/HALCONDEORO) | On-device settings, DNS blocking [src](https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md) | no [src](https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md) | yes — The README says nothing is installed on the TV and everything can be undone. Settings are changed with the remote after noting the original values. The DNS filter runs on the network, so removing it leaves the set unmodified. [src](https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md) | depends [src](https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/README.md) | 4 [src](https://api.github.com/repos/HALCONDEORO/vidaa-clean-tv) | 2026-10-29 [src](https://github.com/HALCONDEORO/vidaa-clean-tv/commits/main) | MIT [src](https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/LICENSE) |
 
 Notes
 
-- **Pi-hole Roku ads blocklist.** A hosts file of Roku ad domains for Pi-hole. The README says banner ad containers may still appear, empty. The raw URL printed in that README points at a different owner name. The file in this repository is hosts.
+- **VIDAA Clean TV.** For Hisense VIDAA and other VIDAA sets, not Hisense Android TV. CleanYourTV's showcase lists this project. The README says there is no root, no firmware change, and no ADB. It also says no model has a completed hardware-verification session, so this row is untested on hardware. Ads can still appear after the personalization setting is changed.
+
+## Roku
+
+**Start here: [Pi-hole Roku ads blocklist](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist)** by [b02860de585071a2](https://github.com/b02860de585071a2). This is only a hosts file. The last commit on the default branch is 2023-09-10. Root, undo, and whether a computer is required are unknown. The README says banner containers may still show up empty. [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md)
+
+**Caveat.** 2023 hosts list. Root, undo, and PC are unknown. The kind, the star count, the commit date, and the license are the cells the repository does state. [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md)
+
+1 entries. The first row is the start-here pick. The rows after it run from the smaller change to the larger one: no root before root, a full way back before a partial one, and no computer before a computer.
+
+| Tool | Kind | Root | Undo | PC | Stars | Last commit | License |
+| --- | --- | --- | --- | --- | ---: | --- | --- |
+| [Pi-hole Roku ads blocklist](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist)<br>[b02860de585071a2](https://github.com/b02860de585071a2)<br>2023 hosts list. Root, undo, and PC are unknown. | DNS blocking [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md) | unknown [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md) | unknown — The README does not say how to remove the list, whether the television needs root, or whether a computer is required. [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md) | unknown [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/README.md) | 0 [src](https://api.github.com/repos/b02860de585071a2/pihole-roku-ads-blocklist) | 2023-09-10 [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/commits/main) | GPL-3.0 [src](https://github.com/b02860de585071a2/pihole-roku-ads-blocklist/blob/main/LICENSE) |
+
+Notes
+
+- **Pi-hole Roku ads blocklist.** Only a hosts file of Roku ad domains for Pi-hole, last committed in 2023. Root, how to remove the list, and whether a computer is required are unknown. The README says banner ad containers may still appear, empty. The raw URL printed in that README points at a different owner name. The file in this repository is hosts.
 
 ## Network DNS for any brand
 
 **Start here: [AdGuard Home](https://github.com/AdguardTeam/AdGuardHome)** by [AdguardTeam](https://github.com/AdguardTeam). The README calls it a network-wide ads and trackers DNS server, names smart TVs as a place that kind of blocking helps, says it can run without root, and documents an uninstall flag. The same README says DNS blocking cannot remove YouTube or Twitch ads. [src](https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md)
+
+**Caveat.** AdGuard Home's own README says a DNS-level blocker cannot remove YouTube or Twitch ads. That limit is noted on both rows in this section. [src](https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md)
 
 2 entries. The first row is the start-here pick. The rows after it run from the smaller change to the larger one: no root before root, a full way back before a partial one, and no computer before a computer.
 
@@ -210,13 +230,13 @@ Notes
 Notes
 
 - **AdGuard Home.** Network-wide ads and trackers DNS server. The README says this class of blocker can cover smart TVs, and that AdGuard Home can run without root privileges. It also says DNS blocking cannot remove YouTube or Twitch ads. It does not document a per-brand television menu.
-- **Pi-hole.** DNS sinkhole the README describes as network-wide ad blocking, including smart TVs, with no client software on the television. It runs on the owner's Linux hardware. The Roku list below is meant to be added to it. GitHub's license field is NOASSERTION. The license file states EUPL-1.2.
+- **Pi-hole.** DNS sinkhole the README describes as network-wide ad blocking, including smart TVs, with no client software on the television. It runs on the owner's Linux hardware. The Roku list is a separate hosts file meant to be added to it. AdGuard Home's README says this kind of DNS blocking cannot remove YouTube or Twitch ads. GitHub's license field is NOASSERTION. The license file states EUPL-1.2.
 
 ## Related lists
 
 [Awesome Android TV FOSS Apps](https://github.com/Generator/Awesome-Android-TV-FOSS-Apps) is a separate curated list of free and open-source Android TV apps. This repository does not copy its wording or its layout.
 
-## Left out of v1
+## Left out
 
 These came up while gathering the tables. They are omitted because a cell would have been a guess, or because the project is not itself a way to strip ads.
 
@@ -229,7 +249,7 @@ These came up while gathering the tables. They are omitted because a cell would 
 - [SmartTubeLegacy](https://github.com/yuliskov/SmartTubeLegacy). GitHub marks the repository archived. SmartTube is the current project.
 - [Apps2Samsung](https://github.com/Apps2Samsung/Apps2Samsung). Named by TizenTube's install guide as the installer. Its own root and undo statements were not reviewed, so it has no row.
 - [Awesome Android TV FOSS Apps](https://github.com/Generator/Awesome-Android-TV-FOSS-Apps). Linked under Related lists. Its text and layout are not reused, and it is a general app list rather than a brand-by-brand ad-strip table.
-- [Hisense VIDAA, Vizio, and Roku beyond DNS](https://github.com/Gathin23/cleanyourtv/blob/main/README.md). CleanYourTV's README says VIDAA, Vizio and Roku have no ADB path. No other public README in this pass stated a reversible on-device tool for VIDAA or Vizio. Roku is only the hosts list above.
+- [Vizio](https://github.com/Gathin23/cleanyourtv/blob/main/README.md). CleanYourTV's README says Vizio has no ADB path. No public README in this pass stated an on-device tool for Vizio. Hisense VIDAA is the VIDAA Clean TV row. Roku is the 2023 hosts list above.
 - [Country forks and skins](https://github.com/Gathin23/cleanyourtv). Forks and skins of CleanYourTV, Aerial, Free My TV and TV Detox repeat the upstream claims. Quiet TV and 简居 TV stay because their READMEs add their own scope.
 
 ## License
