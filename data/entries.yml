@@ -1082,6 +1082,33 @@ entries:
       last_commit: https://github.com/HALCONDEORO/vidaa-clean-tv/commits/main
       license: https://github.com/HALCONDEORO/vidaa-clean-tv/blob/main/LICENSE
 
+  - id: tvboxtools
+    name: TV Box Tools
+    author: smartago
+    repo: smartago/tvboxtools
+    branch: main
+    platforms: [android-tv, oem-android]
+    kinds: [clean-launcher, adb-debloat]
+    root: "no"
+    reversible: "yes"
+    undo: "The stock launcher is never removed, the previous HOME activity is saved before any change, and one tap restores the factory home screen."
+    pc_needed: "no"
+    stars: 17
+    last_commit: "2026-10-13"
+    license: Apache-2.0
+    archived: false
+    note: "Launcher manager and ADB toolbox for Android TV and Google TV boxes that sets the default HOME app with cmd package set-home-activity so it survives reboots without an accessibility service. Available on Google Play (com.tv.launcher.manager.adb.tvboxtools), at tvboxtools.com (web app, Windows, macOS, Linux, Android), and as an MCP server (tvlm)."
+    sources:
+      kinds: https://github.com/smartago/tvboxtools/blob/main/README.md
+      root: https://github.com/smartago/tvboxtools/blob/main/README.md
+      reversible: https://github.com/smartago/tvboxtools/blob/main/README.md
+      undo: https://github.com/smartago/tvboxtools/blob/main/README.md
+      pc_needed: https://github.com/smartago/tvboxtools/blob/main/README.md
+      platforms: https://github.com/smartago/tvboxtools/blob/main/README.md
+      stars: https://api.github.com/repos/smartago/tvboxtools
+      last_commit: https://github.com/smartago/tvboxtools/commits/main
+      license: https://github.com/smartago/tvboxtools/blob/main/LICENSE
+
 left_out:
   - name: NextDNS CLI
     url: https://github.com/nextdns/nextdns
