@@ -119,8 +119,8 @@ entries:
     reversible: "yes"
     undo: "Built-in apps are disabled with pm disable-user, which Undo or pm enable reverses. Restore everything turns back on only what Tellyscope turned off. Uninstall is offered only for apps the owner installed."
     pc_needed: "no"
-    stars: 825
-    last_commit: "2026-10-29"
+    stars: 1131
+    last_commit: "2026-10-30"
     license: GPL-3.0
     archived: false
     note: "Phone app. The README names Android TV, Google TV, NVIDIA Shield and Fire TV, and says a real-hardware check for Shield and Fire TV is still open. Tweaks include ad-blocking Private DNS, and it can install a launcher."
@@ -146,8 +146,8 @@ entries:
     reversible: "yes"
     undo: "Apps are switched off for the main user and can be put back one at a time or from the restore point. Save a copy exports restore scripts that run from any computer with adb."
     pc_needed: "no"
-    stars: 1135
-    last_commit: "2026-10-30"
+    stars: 1390
+    last_commit: "2026-10-31"
     license: MIT
     archived: false
     note: "Android phone app for the CleanYourTV lists. The README says Fire TV, TCL China builds and Android 7 get cleanup only, and that a new home screen is limited to models whose list says the switch holds. It never uses the word root."
@@ -173,8 +173,8 @@ entries:
     reversible: "yes"
     undo: "Packages are disabled with pm disable-user and nothing is uninstalled, so the restore script can undo every step. The README also calls this a one-line restore."
     pc_needed: "yes"
-    stars: 46068
-    last_commit: "2026-10-30"
+    stars: 49549
+    last_commit: "2026-11-02"
     license: MIT
     archived: false
     note: "Computer, or a coding assistant on that computer, for Android TV and Google TV. On Fire TV the README says only the debloat half applies. Samsung Tizen, LG webOS, Roku, Vizio and Hisense VIDAA are named as unsupported. The brand table includes Xiaomi, TCL and Hisense Android sets."
@@ -200,8 +200,8 @@ entries:
     reversible: "yes"
     undo: "On Google TV, Home Screen then Original brings the factory home, screensaver and apps back. webos/install.py --uninstall and tizen/install.py --uninstall remove those builds."
     pc_needed: depends
-    stars: 5425
-    last_commit: "2026-10-30"
+    stars: 5698
+    last_commit: "2026-10-31"
     license: MIT
     archived: false
     note: "One home screen for Google TV, LG webOS and Samsung Tizen. The Google TV path also turns off the stock home and some named packages, without uninstalling them. A webOS Homebrew Channel repository can skip the computer. TCL, Hisense and Xiaomi remote-button behavior is described in the same README."
@@ -227,7 +227,7 @@ entries:
     reversible: partial
     undo: "undo.sh turns the stock home screen back on and removes this one. The README says reversing the package cleanup is a further step, and that one remote-service change is not covered by undo.sh."
     pc_needed: "yes"
-    stars: 1821
+    stars: 2050
     last_commit: "2026-10-30"
     license: MIT
     archived: false
@@ -254,8 +254,8 @@ entries:
     reversible: "yes"
     undo: "The install section says the desktop can be restored at any time. The restore section documents a restore command, and --uninstall removes Aerial."
     pc_needed: depends
-    stars: 7945
-    last_commit: "2026-10-30"
+    stars: 8834
+    last_commit: "2026-11-02"
     license: MIT
     archived: false
     note: "tvOS-style Android TV launcher aimed at Xiaomi, TCL, Skyworth, Sony and other sets, including a Hisense model in the device table. System apps are not modified. Install paths include a computer, and a USB stick without one."
@@ -281,8 +281,8 @@ entries:
     reversible: "yes"
     undo: "The FAQ says root is not required and system partitions are not modified. The restore section documents a restore command and a manual sequence. On webOS the documented restore only removes the Tigris package and says the factory Home was not changed."
     pc_needed: depends
-    stars: 534
-    last_commit: "2026-10-29"
+    stars: 576
+    last_commit: "2026-11-02"
     license: MIT
     archived: false
     note: "Android TV launcher that names Xiaomi, TCL, Hisense and Skyworth, and says it does not root, does not change system partitions, and does not uninstall the factory desktop. A USB install can open the basic desktop. The webOS tree is described as a development preview, and Home-button takeover is not a finished release."
@@ -335,7 +335,7 @@ entries:
     reversible: unknown
     undo: "The README lists easy backups of settings. It does not describe putting the stock launcher back."
     pc_needed: "no"
-    stars: 2235
+    stars: 2275
     last_commit: "2026-02-19"
     license: unknown
     archived: false
@@ -362,8 +362,8 @@ entries:
     reversible: partial
     undo: "Method 4 documents pm enable for the Google TV launcher and the setup wizard. Methods 1 to 3 are a default-home setting, an accessibility toggle, or a key remap, and the README does not write a separate undo for those."
     pc_needed: "no"
-    stars: 430
-    last_commit: "2026-10-30"
+    stars: 447
+    last_commit: "2026-11-02"
     license: GPL-3.0
     archived: false
     note: "Fork of FLauncher. The README calls it ad-free and names Android TV, Google TV and Fire TV. The Downloader app path does not use a computer. The README does not say whether root is required."
@@ -417,8 +417,8 @@ entries:
     reversible: partial
     undo: "The voice-search section says the original YouTube app can be reinstalled if it was removed. The README does not describe removing SmartTube itself. On Android devices other than the Fire TV and Chromecast cases, that voice-search bridge needs root."
     pc_needed: "no"
-    stars: 35732
-    last_commit: "2026-10-28"
+    stars: 35835
+    last_commit: "2026-11-02"
     license: MIT
     archived: false
     note: "Media client for Android TVs and TV boxes. The FAQ says SmartTube has no code to display ads. Supported devices include Fire TV released before October 2025. The README says it does not run on Samsung Tizen, LG webOS or Roku, and that the Fire TV Stick 4K Select and newer VegaOS sticks are out of scope. The easiest install named is the Downloader app on the TV."
@@ -444,7 +444,7 @@ entries:
     reversible: unknown
     undo: "The README does not say how to remove the app or whether root is required."
     pc_needed: depends
-    stars: 3426
+    stars: 3459
     last_commit: "2026-10-16"
     license: BSD-3-Clause
     archived: false
@@ -471,7 +471,7 @@ entries:
     reversible: "yes"
     undo: "scripts/restore.sh re-enables every package, clears the app and network rules, restores settings from the preflight snapshot, removes the DNS filter and gives Home back to Amazon."
     pc_needed: "yes"
-    stars: 1778
+    stars: 1858
     last_commit: "2026-10-27"
     license: MIT
     archived: false
@@ -499,7 +499,7 @@ entries:
     undo: "TV_HOST set, ./uninstall.sh undoes the install. KEEP_DEBLOAT=1 removes only Hearth."
     pc_needed: "yes"
     stars: 0
-    last_commit: "2026-10-29"
+    last_commit: "2026-11-02"
     license: MIT
     archived: false
     note: "Fire OS 7 or 8 home screen. Amazon's launcher stays enabled. SKIP_DEBLOAT=1 skips package cleanup. DNS=1 is optional AdGuard Private DNS. The model table names TCL, Hisense, Insignia, Xiaomi and Toshiba Fire TV sets. The repository description says no root."
@@ -633,7 +633,7 @@ entries:
     reversible: "yes"
     undo: "The README says the factory home screen is untouched. It does not print a separate removal command in the section that calls the app reversible."
     pc_needed: depends
-    stars: 268
+    stars: 282
     last_commit: "2026-10-29"
     license: MIT
     archived: false
@@ -660,8 +660,8 @@ entries:
     reversible: "yes"
     undo: "The README says LG system files are not modified, the Home takeover is a RAM mount, a reboot without the boot scripts brings LG's Home back, and the uninstall removes what was installed."
     pc_needed: depends
-    stars: 323
-    last_commit: "2026-10-30"
+    stars: 387
+    last_commit: "2026-11-02"
     license: MIT
     archived: false
     note: "Home screen for rooted LG webOS 5 and newer, with an optional debloat of LG ads and telemetry. Install is the Homebrew Channel on the TV, or one SSH command from a computer. Default branch is dev."
@@ -687,7 +687,7 @@ entries:
     reversible: unknown
     undo: "The README does not say whether root is required, and it does not describe uninstalling the app. It lists the Homebrew Channel and Device Manager as install paths."
     pc_needed: depends
-    stars: 1538
+    stars: 1552
     last_commit: "2026-07-19"
     license: GPL-3.0
     archived: false
@@ -714,8 +714,8 @@ entries:
     reversible: unknown
     undo: "The README does not describe an uninstall. The recommended install is the rooting path, and several features including disabling some telemetry are marked as root."
     pc_needed: unknown
-    stars: 1649
-    last_commit: "2026-08-03"
+    stars: 1682
+    last_commit: "2026-10-30"
     license: MIT
     archived: false
     note: "Unofficial webOS package repository and root-related tooling. The feature list includes a root-only switch for some telemetry. Other webOS rows use it as the on-TV installer. The README does not say a computer is mandatory. ares-install and an on-TV curl snippet are both listed."
@@ -741,8 +741,8 @@ entries:
     reversible: "yes"
     undo: "The README says disabling protection puts the stopped services back, and disabling the DNS filter restores the original nameserver."
     pc_needed: unknown
-    stars: 45
-    last_commit: "2026-10-30"
+    stars: 52
+    last_commit: "2026-10-31"
     license: MIT
     archived: false
     note: "Homebrew app for a rooted LG webOS 4 or newer TV. It sinkholes LG ad, ACR and telemetry domains and stops the on-TV ad and ACR daemons. The README does not say whether install needs a computer."
@@ -768,7 +768,7 @@ entries:
     reversible: unknown
     undo: "The getting-started guide does not say whether root is required or how to remove TizenBrew."
     pc_needed: "yes"
-    stars: 1692
+    stars: 1708
     last_commit: "2026-05-18"
     license: GPL-3.0
     archived: false
@@ -795,7 +795,7 @@ entries:
     reversible: unknown
     undo: "Neither the README nor the install guide states root, or how to remove the app."
     pc_needed: depends
-    stars: 2404
+    stars: 2434
     last_commit: "2026-10-16"
     license: GPL-3.0
     archived: false
@@ -822,7 +822,7 @@ entries:
     reversible: unknown
     undo: "The README does not say whether root is required or how to remove an app it installed."
     pc_needed: depends
-    stars: 262
+    stars: 271
     last_commit: "2026-07-28"
     license: GPL-3.0
     archived: false
@@ -849,7 +849,7 @@ entries:
     reversible: unknown
     undo: "The README does not describe an uninstall. The installer says it must be root to install."
     pc_needed: "yes"
-    stars: 61568
+    stars: 61626
     last_commit: "2026-10-17"
     license: EUPL-1.2
     archived: false
@@ -876,7 +876,7 @@ entries:
     reversible: "yes"
     undo: "The install instructions include -u to uninstall AdGuard Home."
     pc_needed: "yes"
-    stars: 37934
+    stars: 38058
     last_commit: "2026-10-30"
     license: GPL-3.0
     archived: false
@@ -958,8 +958,8 @@ entries:
     reversible: "yes"
     undo: "App management can disable, re-enable, uninstall and restore installs once local TCP ADB is connected. The README says the original desktop recovery path is kept."
     pc_needed: depends
-    stars: 161
-    last_commit: "2026-10-30"
+    stars: 206
+    last_commit: "2026-11-01"
     license: MIT
     archived: false
     note: "Android TV launcher for China-market sets, based on CleanYourTV, with no ads and no recommendation row. Day-to-day layout does not need ADB. First-time setup and boot-ad handling are described as a computer step. The README says no root and no firmware flash."
@@ -985,7 +985,7 @@ entries:
     reversible: "yes"
     undo: "tools/restore.sh drops this app's home-takeover permissions and tells the reader not to disable or delete the factory desktop. Choosing the factory desktop again may still be required."
     pc_needed: "yes"
-    stars: 123
+    stars: 124
     last_commit: "2026-10-21"
     license: MIT
     archived: false
