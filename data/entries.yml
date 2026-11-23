@@ -406,6 +406,33 @@ entries:
       last_commit: https://gitlab.com/flauncher/flauncher
       license: https://gitlab.com/flauncher/flauncher/-/blob/master/LICENSE
 
+  - id: lounge
+    name: Lounge
+    author: Gingerbreadfork
+    repo: Gingerbreadfork/lounge
+    branch: main
+    platforms: [android-tv]
+    kinds: [clean-launcher]
+    root: "no"
+    reversible: "yes"
+    undo: "The install section says the Google TV home and its setup app are disabled and stay installed, that pm enable with the same names brings them back, and that Power Setup can undo it from the TV."
+    pc_needed: "no"
+    stars: 39
+    last_commit: "2026-11-24"
+    license: MIT
+    archived: false
+    note: "Home screen for Android TV and Google TV on Android 9 and up, built around what you were watching. The README sets it against a stock home that fills its rows with things to buy and plays trailers. The APK installs from a USB stick or the Downloader app, and Power Setup makes it the home screen from the TV with USB debugging on. A computer with adb is the other path. The README says it needs no root."
+    sources:
+      kinds: https://github.com/Gingerbreadfork/lounge/blob/main/README.md
+      root: https://github.com/Gingerbreadfork/lounge/blob/main/README.md
+      reversible: https://github.com/Gingerbreadfork/lounge/blob/main/README.md
+      undo: https://github.com/Gingerbreadfork/lounge/blob/main/README.md
+      pc_needed: https://github.com/Gingerbreadfork/lounge/blob/main/README.md
+      platforms: https://github.com/Gingerbreadfork/lounge/blob/main/README.md
+      stars: https://api.github.com/repos/Gingerbreadfork/lounge
+      last_commit: https://github.com/Gingerbreadfork/lounge/commits/main
+      license: https://github.com/Gingerbreadfork/lounge/blob/main/LICENSE
+
   - id: smarttube
     name: SmartTube
     author: yuliskov
